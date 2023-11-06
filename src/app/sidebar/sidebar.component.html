@@ -1,12 +1,12 @@
 <mat-sidenav-container class="full-height">
     <mat-sidenav #sidenav mode="side" opened class="sidebar">
         <mat-nav-list>
-            <a mat-list-item [routerLink]="['/']">
+            <a mat-list-item routerLink="/home">
                 <mat-icon>home</mat-icon>
                 Home
             </a>
-            <a mat-list-item [routerLink]="['/index']">
-                <mat-icon>text_fields</mat-icon>
+            <a mat-list-item routerLink="/index">
+                <mat-icon>bookmark</mat-icon>
                 Index
             </a>
             <a mat-list-item [routerLink]="['/donate']">
@@ -14,7 +14,7 @@
                 Donate
             </a>
             <hr class="separator">
-            
+
             <!-- Simulated conditional rendering. Replace with actual logic. -->
             <ng-container *ngIf="isLoggedIn">
                 <a mat-list-item [routerLink]="['/profile']">
@@ -31,14 +31,13 @@
                     Log in
                 </a>
             </ng-container>
-  
+
             <hr class="separator">
-  
+
             <a mat-list-item [routerLink]="['/api']">
                 API
             </a>
         </mat-nav-list>
     </mat-sidenav>
-  
-  </mat-sidenav-container>
-  
+
+</mat-sidenav-container>
