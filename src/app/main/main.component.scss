@@ -1,0 +1,17 @@
+:host {
+    flex: 1; // This means the main content will take up the remaining space
+    overflow-y: auto; // Allows scrolling if content exceeds
+    padding: 1rem; // Padding for the main content
+  
+    .search-box {
+      // Styling for the search box
+      width: 50%; // Takes up half of the main container width
+      margin: 2rem auto 1rem; // Centers the search box and gives some margin
+      display: flex;
+      justify-content: space-between; // Distributes space between input and icon
+      align-items: center; // Vertically aligns items in the flex container
+    }
+  
+    // You can continue with other styles specific to main content
+  }
+  
