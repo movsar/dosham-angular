@@ -7,8 +7,6 @@ const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'home', component: MainComponent },
   { path: 'index', component: IndexComponent },
-  // Add other routes below
-  // { path: 'some-path', component: SomeComponent },
 ];
 
 @NgModule({

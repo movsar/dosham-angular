@@ -1,6 +1,5 @@
 :host {
     flex: 1; // This means the main content will take up the remaining space
-    overflow-y: auto; // Allows scrolling if content exceeds
     padding: 1rem; // Padding for the main content
   
     .search-box {
