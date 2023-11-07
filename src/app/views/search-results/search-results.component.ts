@@ -14,7 +14,7 @@ export class SearchResultsComponent implements OnInit, OnDestroy {
   entries: IEntry[] = [];
   private subscription: Subscription = new Subscription();
 
-  constructor(private contentStoreService: ContentStoreService) {}
+  constructor(private contentStoreService: ContentStoreService) { }
 
   ngOnInit(): void {
     // Subscribe to the entries updates

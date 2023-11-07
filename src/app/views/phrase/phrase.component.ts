@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Input, Component } from '@angular/core';
+import { IEntry } from 'src/app/models/entry.model';
 
 @Component({
   selector: 'app-phrase',
@@ -6,5 +7,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./phrase.component.scss']
 })
 export class PhraseComponent {
-
+  @Input() entry?: IEntry;
 }

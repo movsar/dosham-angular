@@ -1,1 +1,12 @@
-<p>entry-action-buttons works!</p>
+<div class="chldr_entry_actions" *ngIf="userService.isLoggedIn">
+    <ng-container *ngIf="canPromote">
+        <button mat-icon-button (click)="promoteHandler()">
+            <mat-icon>check</mat-icon>
+        </button>
+    </ng-container>
+    <ng-container *ngIf="canRemove">
+        <button mat-icon-button (click)="removeHandler()">
+            <mat-icon>delete</mat-icon>
+        </button>
+    </ng-container>
+</div>

@@ -2,3 +2,96 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+
+.chldr_selected_entry * {
+    background-color: #f2f2f2;
+}
+
+.chldr_selectable_entry {
+    cursor: pointer;
+}
+
+    .chldr_selectable_entry :hover {
+        background-color: #f1f1f1;
+    }
+
+
+
+.bi {
+    color: darkblue;
+}
+
+.chldr_navbar_dropdown_option {
+    cursor: pointer;
+}
+
+.chldr_navbar_dropdown {
+    cursor: pointer;
+}
+
+.chldr_registration_errors {
+    font-size: 16px;
+}
+
+.chldr_entry * :hover ~ .chldr_translation_actions {
+    display: inline;
+}
+
+.chldr_entry * :hover ~ .chldr_entry_actions {
+    display: inline;
+}
+
+.chldr_entry_actions {
+    width: 100%;
+    text-align: right;
+    cursor: pointer;
+    /*display: none;*/
+}
+
+.chldr_entry {
+}
+
+.chldr_entry_sub-header {
+    color: brown;
+    font-size: 10px;
+    font-family: Arial;
+}
+
+.chldr_translation_actions {
+    cursor: pointer;
+    /*display: none;*/
+}
+
+.chldr_translation_language-code {
+    font-size: 14px;
+    color: blueviolet;
+}
+
+.chldr_translation_content {
+    font-size: 14px;
+}
+
+.chldr_entry_header {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.chldr_entry_sub-header2 {
+    font-size: 12px;
+}
+
+.chldr_entry_translations {
+}
+
+.chldr_entries {
+    overflow: auto;
+}
+
+.chldr_header {
+    align-self: center;
+    text-align: center;
+    font-size: 30px;
+    font-weight: bold;
+    color: darkcyan;
+}

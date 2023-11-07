@@ -1,13 +1,16 @@
+import { ITranslation } from "./translation.model";
+
 export interface IEntry {
-  entryId: string;
-  userId: string;
-  sourceId: string;
-  parentEntryId?: string;
-  content: string;
-  rate: number;
-  createdAt: string;
-  updatedAt: string;
-  type: EntryType
+  EntryId: string;
+  UserId: string;
+  SourceId: string;
+  ParentEntryId?: string;
+  Content: string;
+  Rate: number;
+  CreatedAt: string;
+  UpdatedAt: string;
+  Type: number;
+  Translations: ITranslation[];
 }
 
 export enum EntryType {

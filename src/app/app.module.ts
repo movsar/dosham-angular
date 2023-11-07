@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+import { MatCardModule } from '@angular/material/card';
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
@@ -38,7 +39,8 @@ import { HttpClientModule } from '@angular/common/http';
     TranslationComponent,
     EntryActionButtonsComponent,
     MainComponent,
-    IndexComponent
+    IndexComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -51,6 +53,7 @@ import { HttpClientModule } from '@angular/common/http';
     MatListModule,
     MatToolbarModule,
     MatSidenavModule,
+    MatCardModule,
     FormsModule,
     GraphQLModule,
     HttpClientModule

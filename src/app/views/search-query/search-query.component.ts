@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Observable } from 'rxjs';
-import { AuthService } from 'src/app/services/auth.service';
+import { UserService } from 'src/app/services/user.service';
+import { ContentStoreService } from 'src/app/services/content-store.service';
 import { SearchService } from 'src/app/services/search.service';
 
 @Component({
@@ -13,8 +14,9 @@ export class SearchQueryComponent {
   isLoggedIn: boolean = false;
 
   constructor(
-    private authService: AuthService,
-    private searchService: SearchService
+    private authService: UserService,
+    private searchService: SearchService,
+    private contentStore: ContentStoreService
   ) {
     this.isLoggedIn = false;// this.authService.isLoggedIn();
     this.loadRandomEntries();
@@ -26,10 +28,7 @@ export class SearchQueryComponent {
   }
 
   async loadRandomEntries() {
-    const randomEntries = await this.searchService.GetRandoms(50);
-    const first = randomEntries[0];
-    console.log(first);
-    // Implement random entries loading logic
+    await this.contentStore.loadRandomEntries();
   }
 
   toggleOnModerationFlag(): void {

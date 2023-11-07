@@ -1,8 +1,8 @@
-<div *ngIf="entries; else noResultsTemplate" class="chldr_entries">
+<div *ngIf="entries && entries.length > 0; else noResultsTemplate" class="chldr_entries">
     <ng-container *ngFor="let entry of entries">
-      <app-word *ngIf="entry.type === EntryType.Word" [entry]="entry"></app-word>
-      <app-phrase *ngIf="entry.type === EntryType.Phrase" [entry]="entry"></app-phrase>
-      <app-text *ngIf="entry.type === EntryType.Text" [entry]="entry"></app-text>
+      <app-word *ngIf="entry.Type === EntryType.Word" [entry]="entry"></app-word>
+      <app-phrase *ngIf="entry.Type === EntryType.Phrase" [entry]="entry"></app-phrase>
+      <app-text *ngIf="entry.Type === EntryType.Text" [entry]="entry"></app-text>
     </ng-container>
   </div>
   

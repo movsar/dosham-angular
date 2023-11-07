@@ -1,1 +1,31 @@
-<p>word works!</p>
+<ng-container *ngIf="entry">
+  <mat-card class="chldr_entry">
+    <mat-card-title class="chldr_entry_header">
+      <!-- {{ header }} -->
+      <!-- <mat-icon *ngIf="entry.sounds?.length > 0" (click)="listenToPronunciation()">volume_up</mat-icon> -->
+      <!-- <a *ngIf="canEdit()" [routerLink]="['/entry/edit', entry.entryId]">
+        <mat-icon>edit</mat-icon>
+      </a> -->
+      <p>
+        {{entry.Content}}
+      </p>
+    </mat-card-title>
+
+    <!-- <div *ngIf="subheader" class="chldr_entry_sub-header">
+        {{ subheader }}
+      </div> -->
+
+    <!-- Entry subtype and details handling can be added here -->
+    <!-- <div *ngIf="entry.subEntries?.length > 0" class="flex-column">
+      </div>
+      -->
+    <div class="chldr_entry_translations mt-2">
+      <app-translation *ngFor="let translation of entry.Translations" [translation]="translation"
+        (promote)="promoteTranslation(translation)">
+      </app-translation>
+    </div>
+
+    <app-entry-action-buttons [entry]="entry" (promote)="promoteEntry()" (remove)="remove()" (share)="share()">
+    </app-entry-action-buttons>
+  </mat-card>
+</ng-container>
