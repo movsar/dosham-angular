@@ -21,6 +21,8 @@ import { PhraseComponent } from './views/phrase/phrase.component';
 import { TextComponent } from './views/text/text.component';
 import { TranslationComponent } from './views/translation/translation.component';
 import { EntryActionButtonsComponent } from './views/entry-action-buttons/entry-action-buttons.component';
+import { MainComponent } from './pages/main/main.component';
+import { IndexComponent } from './pages/index/index.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +34,9 @@ import { EntryActionButtonsComponent } from './views/entry-action-buttons/entry-
     PhraseComponent,
     TextComponent,
     TranslationComponent,
-    EntryActionButtonsComponent
+    EntryActionButtonsComponent,
+    MainComponent,
+    IndexComponent
   ],
   imports: [
     BrowserModule,
