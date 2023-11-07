@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Observable } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service';
 import { SearchService } from 'src/app/services/search.service';
 
@@ -16,7 +17,7 @@ export class SearchQueryComponent {
     private searchService: SearchService
   ) {
     this.isLoggedIn = false;// this.authService.isLoggedIn();
-    this.searchService.GetRandoms(50);
+    this.loadRandomEntries();
   }
 
   search(event: Event): void {
@@ -24,8 +25,10 @@ export class SearchQueryComponent {
     this.searchService.Search((event.target as HTMLInputElement).value);
   }
 
-  loadRandomEntries(): void {
-    this.searchService.GetRandoms(50);
+  async loadRandomEntries() {
+    const randomEntries = await this.searchService.GetRandoms(50);
+    const first = randomEntries[0];
+    console.log(first);
     // Implement random entries loading logic
   }
 

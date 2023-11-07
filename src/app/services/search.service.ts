@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ApiRequestService } from './api-request.service';
+import { IEntry } from '../models/entry.model';
 
 @Injectable({
   providedIn: 'root'
@@ -12,20 +13,13 @@ export class SearchService {
   }
 
   async GetRandoms(count: number) {
-    console.log("get randoms");
-    try {
-      const result = await this._requestService.getRandomsRequest(count);
-
-      if (result.success && result.serializedData) {
-        // Deserialize the serialized data
-        return JSON.parse(result.serializedData);
-      } else {
-        // Handle the error scenario
-        throw new Error(result.errorMessage);
-      }
-    } catch (error) {
-      console.error('Error in useGetRandomsMethod:', error);
-      throw error; // rethrow the error or return a default value
+    const data = await this._requestService.getRandomEntriesRequest(count);
+    if (!data.success) {
+      throw "No data received from the GraphQL";
     }
+
+    // Deserialize the serialized data
+    const entries: IEntry[] = JSON.parse(data.serializedData);
+    return entries;
   }
 }

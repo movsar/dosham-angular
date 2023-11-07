@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Apollo, gql } from 'apollo-angular';
-import { FetchResult } from '@apollo/client/core';
-import { map } from 'rxjs/operators';
+import { firstValueFrom } from 'rxjs';
 
 interface RequestResult {
   success: boolean;
@@ -13,13 +12,14 @@ interface RequestResult {
   providedIn: 'root'
 })
 export class ApiRequestService {
-  constructor(private apollo: Apollo) {}
+  constructor(private apollo: Apollo) { }
 
   // Use async/await to handle the Promise returned by the mutate method
-  public async getRandomsRequest(count: number): Promise<RequestResult> {
-    const GET_RANDOMS_MUTATION = gql`
-      mutation getRandoms($count: Int!) {
-        getRandoms(count: $count) {
+  public async getRandomEntriesRequest(count: number): Promise<RequestResult> {
+    const method = "randomEntries";
+    const GET_RANDOMS_QUERY = gql`
+      query ${method}($count: Int!) {
+        ${method}(count: $count) {
           success
           errorMessage
           serializedData
@@ -28,18 +28,20 @@ export class ApiRequestService {
     `;
 
     try {
-      // Await the mutate method which returns a Promise
-      const result = await this.apollo.mutate<RequestResult>({
-        mutation: GET_RANDOMS_MUTATION,
+      // Make the request
+      const response = await firstValueFrom(this.apollo.query<any>({
+        query: GET_RANDOMS_QUERY,
         variables: { count },
-      }).toPromise(); // convert the Observable to a Promise
+      }));
 
-      // Check if the result has data and return it, or throw an error
-      if (result?.data) {
-        return result.data;
-      } else {
-        throw new Error('No data received from the GraphQL mutation');
+      // Check whether the request has been made successfully
+      if (!response || !response.data) {
+        throw new Error('GraphQL request failed');
       }
+
+      // Extract the response data
+      const data = response.data[method];     
+      return data;
     } catch (error) {
       throw error; // or handle the error as needed
     }
