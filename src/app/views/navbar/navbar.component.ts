@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-sidebar',
-  templateUrl: './sidebar.component.html',
-  styleUrls: ['./sidebar.component.scss']
+  selector: 'app-navbar',
+  templateUrl: './navbar.component.html',
+  styleUrls: ['./navbar.component.scss']
 })
-export class SidebarComponent {
+export class NavbarComponent {
   // Simulated user state for demonstration. Replace with your actual logic.
   isLoggedIn = false; // Initially set to false. Change this to use your actual authentication service or logic.
   currentUserEmail = 'user@example.com'; // Dummy email. Replace with the actual email once the user is logged in.
