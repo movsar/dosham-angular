@@ -23,6 +23,8 @@ import { TranslationComponent } from './views/translation/translation.component'
 import { EntryActionButtonsComponent } from './views/entry-action-buttons/entry-action-buttons.component';
 import { MainComponent } from './pages/main/main.component';
 import { IndexComponent } from './pages/index/index.component';
+import { GraphQLModule } from './graphql.module';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -49,7 +51,9 @@ import { IndexComponent } from './pages/index/index.component';
     MatListModule,
     MatToolbarModule,
     MatSidenavModule,
-    FormsModule
+    FormsModule,
+    GraphQLModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

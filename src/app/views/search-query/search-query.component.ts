@@ -16,6 +16,7 @@ export class SearchQueryComponent {
     private searchService: SearchService
   ) {
     this.isLoggedIn = false;// this.authService.isLoggedIn();
+    this.searchService.GetRandoms(50);
   }
 
   search(event: Event): void {
@@ -24,6 +25,7 @@ export class SearchQueryComponent {
   }
 
   loadRandomEntries(): void {
+    this.searchService.GetRandoms(50);
     // Implement random entries loading logic
   }
 
