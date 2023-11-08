@@ -26,7 +26,7 @@ export class ApiRequestService {
       }
     `;
 
-    return await this.makeRequest(method, FIND_ENTRIES_QUERY, { inputText }, 'cache-first');
+    return await this.makeRequest(method, FIND_ENTRIES_QUERY, { inputText }, 'network-only');
   }
 
   public async getRandomEntriesRequest(count: number): Promise<RequestResult> {
