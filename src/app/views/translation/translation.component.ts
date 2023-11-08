@@ -13,7 +13,7 @@ export class TranslationComponent {
 
   canPromote(rate: number, userId: string): boolean {
     // Add logic to determine if the user can promote this translation
-    return true; // Placeholder return
+    return false; // Placeholder return
   }
 
   doSearch(): void {

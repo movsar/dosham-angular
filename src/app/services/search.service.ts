@@ -8,8 +8,14 @@ import { IEntry } from '../models/entry.model';
 export class SearchService {
   constructor(private _requestService: ApiRequestService) { }
 
-  Search(s: string) {
+  async Search(s: string) {
+    const data = await this._requestService.findEntries(s);
+    if (!data.success) {
+      throw "No data received from the GraphQL";
+    }
 
+    const entries: IEntry[] = JSON.parse(data.serializedData);
+    return entries;
   }
 
   async GetRandoms(count: number) {
@@ -18,7 +24,6 @@ export class SearchService {
       throw "No data received from the GraphQL";
     }
 
-    // Deserialize the serialized data
     const entries: IEntry[] = JSON.parse(data.serializedData);
     return entries;
   }

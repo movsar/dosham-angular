@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { Observable } from 'rxjs';
 import { UserService } from 'src/app/services/user.service';
 import { ContentStoreService } from 'src/app/services/content-store.service';
-import { SearchService } from 'src/app/services/search.service';
 
 @Component({
   selector: 'app-search-query',
@@ -15,16 +14,15 @@ export class SearchQueryComponent {
 
   constructor(
     private authService: UserService,
-    private searchService: SearchService,
     private contentStore: ContentStoreService
   ) {
     this.isLoggedIn = false;// this.authService.isLoggedIn();
     this.loadRandomEntries();
   }
 
-  search(event: Event): void {
+  async search(event: Event) {
     // Call search logic, casting the value since we know it's an input element
-    this.searchService.Search((event.target as HTMLInputElement).value);
+    await this.contentStore.findEntries((event.target as HTMLInputElement).value);
   }
 
   async loadRandomEntries() {

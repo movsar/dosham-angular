@@ -14,7 +14,21 @@ interface RequestResult {
 export class ApiRequestService {
   constructor(private apollo: Apollo) { }
 
-  // Use async/await to handle the Promise returned by the mutate method
+  public async findEntries(inputText: string): Promise<RequestResult> {
+    const method = "find";
+    const FIND_ENTRIES_QUERY = gql`
+      query ${method}($inputText: String!) {
+        ${method}(inputText: $inputText) {
+          success
+          errorMessage
+          serializedData
+        }
+      }
+    `;
+
+    return await this.makeRequest(method, FIND_ENTRIES_QUERY, { inputText }, 'cache-first');
+  }
+
   public async getRandomEntriesRequest(count: number): Promise<RequestResult> {
     const method = "randomEntries";
     const GET_RANDOMS_QUERY = gql`
@@ -27,11 +41,16 @@ export class ApiRequestService {
       }
     `;
 
+    return await this.makeRequest(method, GET_RANDOMS_QUERY, { count }, 'network-only');
+  }
+
+  private async makeRequest(method: any, query: any, variables: any, fetchPolicy: any): Promise<RequestResult> {
     try {
       // Make the request
       const response = await firstValueFrom(this.apollo.query<any>({
-        query: GET_RANDOMS_QUERY,
-        variables: { count },
+        query: query,
+        variables: variables,
+        fetchPolicy: fetchPolicy,
       }));
 
       // Check whether the request has been made successfully
@@ -40,7 +59,7 @@ export class ApiRequestService {
       }
 
       // Extract the response data
-      const data = response.data[method];     
+      const data = response.data[method];
       return data;
     } catch (error) {
       throw error; // or handle the error as needed

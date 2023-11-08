@@ -1,15 +1,22 @@
+import { ISound } from "./sound.model";
+import { ISource } from "./source.model";
 import { ITranslation } from "./translation.model";
 
 export interface IEntry {
   EntryId: string;
   UserId: string;
+  Source: ISource;
+  Sounds: ISound[];
   SourceId: string;
   ParentEntryId?: string;
-  Content: string;
   Rate: number;
+  Content: string;
+  Type: number;
+  Subtype: number;
+  Details: string;
+  SubEntries: IEntry[];
   CreatedAt: string;
   UpdatedAt: string;
-  Type: number;
   Translations: ITranslation[];
 }
 

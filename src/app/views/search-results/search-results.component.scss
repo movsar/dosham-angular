@@ -1,3 +1,7 @@
-:host{
-    height:max-content;
+:host {
+    height: max-content;
+
+    .chldr_entries {
+        overflow: auto;
+    }
 }

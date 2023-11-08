@@ -1,0 +1,37 @@
+:host {
+    .chldr_entry_header {
+        font-size: 16px;
+        font-weight: bold;
+    }
+
+    .chldr_entry_sub-header2 {
+        font-size: 12px;
+    }
+
+    .chldr_entry * :hover~.chldr_translation_actions {
+        display: inline;
+    }
+
+    .chldr_entry * :hover~.chldr_entry_actions {
+        display: inline;
+    }
+
+    .chldr_entry {
+        margin-top: 20px;
+    }
+
+    .chldr_entry_translations {}
+
+    .chldr_entry_actions {
+        width: 100%;
+        text-align: right;
+        cursor: pointer;
+        /*display: none;*/
+    }
+
+    .chldr_entry_sub-header {
+        color: brown;
+        font-size: 10px;
+        font-family: Arial;
+    }
+}

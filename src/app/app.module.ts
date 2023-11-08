@@ -17,9 +17,7 @@ import { FormsModule } from '@angular/forms';
 import { NavbarComponent } from './views/navbar/navbar.component';
 import { SearchQueryComponent } from './views/search-query/search-query.component';
 import { SearchResultsComponent } from './views/search-results/search-results.component';
-import { WordComponent } from './views/word/word.component';
-import { PhraseComponent } from './views/phrase/phrase.component';
-import { TextComponent } from './views/text/text.component';
+import { EntryComponent } from './views/entry/entry.component';
 import { TranslationComponent } from './views/translation/translation.component';
 import { EntryActionButtonsComponent } from './views/entry-action-buttons/entry-action-buttons.component';
 import { MainComponent } from './pages/main/main.component';
@@ -33,14 +31,11 @@ import { HttpClientModule } from '@angular/common/http';
     NavbarComponent,
     SearchQueryComponent,
     SearchResultsComponent,
-    WordComponent,
-    PhraseComponent,
-    TextComponent,
+    EntryComponent,
     TranslationComponent,
     EntryActionButtonsComponent,
     MainComponent,
     IndexComponent,
-
   ],
   imports: [
     BrowserModule,

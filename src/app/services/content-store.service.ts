@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { IEntry } from '../models/entry.model';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { SearchService } from './search.service';
+import { ITranslation } from '../models/translation.model';
 
 @Injectable({
   providedIn: 'root'
@@ -12,11 +13,28 @@ export class ContentStoreService {
 
   constructor(private searchService: SearchService) { }
 
+  promoteEntry(entry:IEntry){
+
+  }
+
+  removeEntry(entry:IEntry){
+
+  }
+
+  promoteTranslation(translation:ITranslation){
+
+  }
+
+  async findEntries(inputText:string){
+    const entries = await this.searchService.Search(inputText);
+    this.entriesSubject.next(entries);
+  }
+
   async loadRandomEntries() {
     console.log("requesting random entries");
 
-    const randomEntries = await this.searchService.GetRandoms(50);
-    this.entriesSubject.next(randomEntries);
+    const entries = await this.searchService.GetRandoms(50);
+    this.entriesSubject.next(entries);
     
     console.log("random entries received");
   }
