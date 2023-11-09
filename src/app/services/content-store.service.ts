@@ -13,21 +13,25 @@ export class ContentStoreService {
 
   constructor(private searchService: SearchService) { }
 
-  promoteEntry(entry:IEntry){
+  promoteEntry(entry: IEntry) {
 
   }
 
-  removeEntry(entry:IEntry){
+  removeEntry(entry: IEntry) {
 
   }
 
-  promoteTranslation(translation:ITranslation){
+  promoteTranslation(translation: ITranslation) {
 
   }
 
-  async findEntries(inputText:string){
-    const entries = await this.searchService.Search(inputText);
-    this.entriesSubject.next(entries);
+  async findEntries(inputText: string) {
+    if (inputText.length == 0) {
+      this.entriesSubject.next([]);
+    } else {
+      const entries = await this.searchService.Search(inputText);
+      this.entriesSubject.next(entries);
+    }
   }
 
   async loadRandomEntries() {
@@ -35,7 +39,7 @@ export class ContentStoreService {
 
     const entries = await this.searchService.GetRandoms(50);
     this.entriesSubject.next(entries);
-    
+
     console.log("random entries received");
   }
 

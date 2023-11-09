@@ -12,7 +12,7 @@ export class SearchQueryComponent implements OnInit {
   searchQuery: string = '';
   isLoggedIn: boolean = false;
 
-  results$ = new Observable;
+  searchResults = new Observable;
   subject = new Subject<string>()
 
   constructor(private contentStore: ContentStoreService) {
@@ -21,12 +21,19 @@ export class SearchQueryComponent implements OnInit {
   }
 
   ngOnInit() {
-   
+    this.subject.pipe(
+      debounceTime(500),
+      map((searchText: string) => this.contentStore.findEntries(searchText))
+    ).subscribe({
+      error: error => {
+        console.error(error);
+      }
+    });
   }
 
   async search(event: Event) {
     const inputText = (event.target as HTMLInputElement).value;
-    this.contentStore.findEntries(inputText)
+    this.subject.next(inputText);
   }
 
   async loadRandomEntries() {

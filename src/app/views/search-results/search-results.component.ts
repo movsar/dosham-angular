@@ -10,8 +10,15 @@ import { SearchService } from 'src/app/services/search.service';
   styleUrls: ['./search-results.component.scss']
 })
 export class SearchResultsComponent implements OnInit, OnDestroy {
-  EntryType = EntryType; // This exposes the enum to the template
+  // This exposes the enum to the template
+  EntryType = EntryType;
+
+  // Search results
   entries: IEntry[] = [];
+
+  // A flag to check whether the fetch has been completed 
+  inProgress: boolean = true;
+
   private subscription: Subscription = new Subscription();
 
   constructor(private contentStoreService: ContentStoreService) { }
@@ -19,15 +26,17 @@ export class SearchResultsComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     // Subscribe to the entries updates
     this.subscription.add(
-      this.contentStoreService.entries$.subscribe(
-        (entries) => {
+      this.contentStoreService.entries$.subscribe({
+        next: (entries) => {
           this.entries = entries;
+          this.inProgress = false;
         },
-        (error) => {
+        error: (error) => {
           console.error('Failed to load entries', error);
         }
-      )
+      })
     );
+    this.inProgress = true;
   }
 
   ngOnDestroy(): void {

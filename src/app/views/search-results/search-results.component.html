@@ -1,9 +1,15 @@
-<div *ngIf="entries && entries.length > 0; else noResultsTemplate" class="chldr_entries">
+<div *ngIf="entries && entries.length > 0;" class="chldr_entries">
   <ng-container *ngFor="let entry of entries">
     <app-entry [entry]="entry" class="chldr_entry"></app-entry>
   </ng-container>
 </div>
 
-<ng-template #noResultsTemplate>
+<div *ngIf="!inProgress && entries.length == 0">
   <p>No entries found.</p>
-</ng-template>
+</div>
+
+<div *ngIf="inProgress">
+  <p>
+    Fetching ...
+  </p>
+</div>

@@ -12,6 +12,9 @@ interface RequestResult {
   providedIn: 'root'
 })
 export class ApiRequestService {
+  FETCH_POLICY_CACHE_FIRST = 'cache-first';
+  FETCH_POLICY_NETWORK_ONLY = 'network-only';
+
   constructor(private apollo: Apollo) { }
 
   public async findEntries(inputText: string): Promise<RequestResult> {
@@ -26,7 +29,7 @@ export class ApiRequestService {
       }
     `;
 
-    return await this.makeRequest(method, FIND_ENTRIES_QUERY, { inputText }, 'cache-first');
+    return await this.makeRequest(method, FIND_ENTRIES_QUERY, { inputText }, this.FETCH_POLICY_CACHE_FIRST);
   }
 
   public async getRandomEntriesRequest(count: number): Promise<RequestResult> {
@@ -41,7 +44,7 @@ export class ApiRequestService {
       }
     `;
 
-    return await this.makeRequest(method, GET_RANDOMS_QUERY, { count }, 'network-only');
+    return await this.makeRequest(method, GET_RANDOMS_QUERY, { count }, this.FETCH_POLICY_NETWORK_ONLY);
   }
 
   private async makeRequest(method: any, query: any, variables: any, fetchPolicy: any): Promise<RequestResult> {
