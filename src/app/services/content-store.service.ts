@@ -11,6 +11,8 @@ export class ContentStoreService {
   private entriesSubject: BehaviorSubject<IEntry[]> = new BehaviorSubject<IEntry[]>([]);
   public entries$: Observable<IEntry[]> = this.entriesSubject.asObservable();
 
+  public currentEntries: IEntry[] = [];
+
   constructor(private searchService: SearchService) { }
 
   promoteEntry(entry: IEntry) {
@@ -29,18 +31,14 @@ export class ContentStoreService {
     if (inputText.length == 0) {
       this.entriesSubject.next([]);
     } else {
-      const entries = await this.searchService.Search(inputText);
-      this.entriesSubject.next(entries);
+      this.currentEntries = await this.searchService.Search(inputText);
+      this.entriesSubject.next(this.currentEntries);
     }
   }
 
   async loadRandomEntries() {
-    console.log("requesting random entries");
-
-    const entries = await this.searchService.GetRandoms(50);
-    this.entriesSubject.next(entries);
-
-    console.log("random entries received");
+    this.currentEntries = await this.searchService.GetRandoms(50);
+    this.entriesSubject.next(this.currentEntries);
   }
 
   setEntries(entries: IEntry[]): void {

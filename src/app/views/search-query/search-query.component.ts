@@ -12,12 +12,10 @@ export class SearchQueryComponent implements OnInit {
   searchQuery: string = '';
   isLoggedIn: boolean = false;
 
-  searchResults = new Observable;
   subject = new Subject<string>()
 
   constructor(private contentStore: ContentStoreService) {
     this.isLoggedIn = false;// this.authService.isLoggedIn();
-    this.loadRandomEntries();
   }
 
   ngOnInit() {
@@ -29,6 +27,10 @@ export class SearchQueryComponent implements OnInit {
         console.error(error);
       }
     });
+
+    if (this.contentStore.currentEntries.length == 0) {
+      this.loadRandomEntries();
+    }
   }
 
   async search(event: Event) {
