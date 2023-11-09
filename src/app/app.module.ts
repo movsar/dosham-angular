@@ -14,7 +14,6 @@ import { MatListModule } from '@angular/material/list';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { FormsModule } from '@angular/forms';
-import { NavbarComponent } from './views/navbar/navbar.component';
 import { SearchQueryComponent } from './views/search-query/search-query.component';
 import { SearchResultsComponent } from './views/search-results/search-results.component';
 import { EntryComponent } from './views/entry/entry.component';
@@ -28,7 +27,6 @@ import { HttpClientModule } from '@angular/common/http';
 @NgModule({
   declarations: [
     AppComponent,
-    NavbarComponent,
     SearchQueryComponent,
     SearchResultsComponent,
     EntryComponent,
@@ -51,9 +49,9 @@ import { HttpClientModule } from '@angular/common/http';
     MatCardModule,
     FormsModule,
     GraphQLModule,
-    HttpClientModule
+    HttpClientModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
