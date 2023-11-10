@@ -1,7 +1,7 @@
 <!-- Top controls -->
-<div *ngIf="_entries && _entries.length > 0" class="text-center">
+<div *ngIf="_entries && _entries.length > 0">
   <div class="letters">
-    <button
+    <button mat-button color="primary" 
       *ngFor="let letter of _letters"
       class="letter-button"
       (click)="letterSelectionHandler(letter)"
@@ -10,6 +10,8 @@
     </button>
   </div>
 
+  <app-search-results></app-search-results>
+
   <div class="pager">
     <app-pager
       [currentPage]="_currentPage"
@@ -18,28 +20,3 @@
     ></app-pager>
   </div>
 </div>
-
-<app-search-results></app-search-results>
-
-<div *ngIf="_entries && _entries.length > 0" class="text-center">
-  <div class="pager">
-    <app-pager
-      [currentPage]="_currentPage"
-      [totalPages]="_totalPages"
-      (selectedPage)="selectPage($event)"
-    ></app-pager>
-
-    <div class="letters">
-      <button
-        *ngFor="let letter of _letters"
-        class="letter-button"
-        (click)="letterSelectionHandler(letter)"
-      >
-        {{ letter }}
-      </button>
-    </div>
-  </div>
-</div>
-<!-- Similar to top controls... -->
-
-<div class="mb-4"></div>

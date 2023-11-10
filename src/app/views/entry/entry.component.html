@@ -1,12 +1,11 @@
-<ng-container *ngIf="entry">
+<ng-container *ngIf="_entry">
   <mat-card class="chldr_entry">
     <div class="chldr_entry_header">
-      <!-- {{ header }} -->
+      {{ Header }}
       <!-- <mat-icon *ngIf="entry.sounds?.length > 0" (click)="listenToPronunciation()">volume_up</mat-icon> -->
       <!-- <a *ngIf="canEdit()" [routerLink]="['/entry/edit', entry.entryId]">
         <mat-icon>edit</mat-icon>
       </a> -->
-      {{entry.Content}}
     </div>
 
     <div *ngIf="Subheader" class="chldr_entry_sub-header">
@@ -14,21 +13,29 @@
     </div>
 
     <!-- Entry subtype and details handling can be added here -->
-    <div *ngIf="entry?.SubEntries!.length > 0" class="flex-column">
+    <div *ngIf="(_entry?.SubEntries)!.length > 0" class="flex-column">
       [
-      <span *ngFor="let subEntry of entry.SubEntries">
+      <span *ngFor="let subEntry of _entry.SubEntries">
         {{ subEntry.Content }}
       </span>
       ]
     </div>
 
     <div class="chldr_entry_translations mt-2">
-      <app-translation *ngFor="let translation of entry.Translations" [translation]="translation"
-        (promote)="promoteTranslation(translation)">
+      <app-translation
+        *ngFor="let translation of _entry.Translations"
+        [_translation]="translation"
+        (promote)="promoteTranslation(translation)"
+      >
       </app-translation>
     </div>
 
-    <app-entry-action-buttons [entry]="entry" (promote)="promoteEntry()" (remove)="remove()" (share)="share()">
+    <app-entry-action-buttons
+      [entry]="_entry"
+      (promote)="promoteEntry()"
+      (remove)="remove()"
+      (share)="share()"
+    >
     </app-entry-action-buttons>
   </mat-card>
 </ng-container>

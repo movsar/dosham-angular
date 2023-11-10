@@ -13,7 +13,7 @@ export interface IEntry {
   Content: string;
   Type: number;
   Subtype: number;
-  Details: string;
+  Details: {};
   SubEntries: IEntry[];
   CreatedAt: string;
   UpdatedAt: string;

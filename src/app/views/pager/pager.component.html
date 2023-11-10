@@ -1,9 +1,9 @@
 <div>
-  <button (click)="onPreviousPage()" [disabled]="currentPage === 1">
+  <button mat-button (click)="onPreviousPage()" [disabled]="currentPage === 1">
     {{ "Previous" }}
   </button>
 
-  <button (click)="onNextPage()" [disabled]="currentPage === totalPages">
+  <button mat-button (click)="onNextPage()" [disabled]="currentPage === totalPages">
     {{ "Next" }}
   </button>
 </div>
