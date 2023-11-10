@@ -1,4 +1,3 @@
-<!-- index.component.html - Angular Template -->
 <h4 class="mt-2">
   {{ "Index" }}
 </h4>
@@ -6,10 +5,10 @@
 <hr />
 
 <!-- Top controls -->
-<div *ngIf="entries" class="text-center">
+<div *ngIf="_entries" class="text-center">
   <div class="letters">
     <button
-      *ngFor="let letter of letters"
+      *ngFor="let letter of _letters"
       class="letter-button"
       (click)="letterSelectionHandler(letter)"
     >
@@ -19,23 +18,21 @@
 
   <div class="mt-2 mb-2">
     <app-pager
-      [currentPage]="currentPage"
-      [totalPages]="totalPages"
+      [currentPage]="_currentPage"
+      [totalPages]="_totalPages"
       (selectedPage)="selectPage($event)"
     ></app-pager>
   </div>
 </div>
 
 <!-- Main content -->
-<div *ngIf="!entries">
+<div *ngIf="!_entries">
   <p>
     <em>{{ "Loading" }}...</em>
   </p>
 </div>
-<!-- <app-entries-presenter
-  *ngIf="entries"
-  [entries]="entries"
-></app-entries-presenter> -->
+
+<app-search-results></app-search-results>
 
 <!-- Bottom controls -->
 <!-- Similar to top controls... -->

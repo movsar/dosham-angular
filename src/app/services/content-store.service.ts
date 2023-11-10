@@ -3,6 +3,7 @@ import { IEntry } from '../models/entry.model';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { SearchService } from './search.service';
 import { ITranslation } from '../models/translation.model';
+import { EntryService } from './entry.service';
 
 @Injectable({
   providedIn: 'root'
@@ -13,8 +14,10 @@ export class ContentStoreService {
 
   public currentEntries: IEntry[] = [];
 
-  constructor(private searchService: SearchService) { }
+  constructor(private searchService: SearchService, private _entryService: EntryService) { }
 
+  entryService = this._entryService;
+  
   promoteEntry(entry: IEntry) {
 
   }
