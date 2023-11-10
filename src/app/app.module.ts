@@ -24,6 +24,9 @@ import { IndexComponent } from './pages/index/index.component';
 import { PagerComponent } from './views/pager/pager.component';
 import { GraphQLModule } from './graphql.module';
 import { HttpClientModule } from '@angular/common/http';
+import { DonateComponent } from './pages/donate/donate.component';
+import { ApiComponent } from './pages/api/api.component';
+import { TranslationActionButtonsComponent } from './views/translation-action-buttons/translation-action-buttons.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +39,9 @@ import { HttpClientModule } from '@angular/common/http';
     MainComponent,
     IndexComponent,
     PagerComponent,
+    DonateComponent,
+    ApiComponent,
+    TranslationActionButtonsComponent,
   ],
   imports: [
     BrowserModule,

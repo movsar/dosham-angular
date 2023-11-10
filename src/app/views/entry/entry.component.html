@@ -17,6 +17,9 @@
       [
       <span *ngFor="let subEntry of _entry.SubEntries">
         {{ subEntry.Content }}
+        <!-- <a *ngIf="canEdit()" [routerLink]="['/entry/edit', entry.entryId]">
+          <mat-icon>edit</mat-icon>
+        </a> -->
       </span>
       ]
     </div>

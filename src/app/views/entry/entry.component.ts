@@ -16,7 +16,7 @@ export class EntryComponent {
     let className: string = '';
 
     if (this._entry.Details) {
-      let details:any =this._entry.Details;
+      let details: any = this._entry.Details;
 
       switch (this._entry.Subtype) {
         case WordType.Noun:
@@ -57,18 +57,27 @@ export class EntryComponent {
 
   promoteEntry() {
     // implement your promotion logic
+    //            await ContentStore.EntryService.PromoteAsync(Entry, UserStore.CurrentUser);
   }
 
   promoteTranslation(translation: any) {
     // implement your promotion logic for the translation
+    //            await ContentStore.EntryService.PromoteTranslationAsync(translation, UserStore.CurrentUser);
   }
 
   remove() {
     // implement your removal logic
+    //            await ContentStore.EntryService.RemoveAsync(Entry, UserStore.CurrentUser.Id!);
   }
 
   share() {
     // implement your share logic
+  }
+
+  canEdit() {
+    // Anyone should be able to open an entry for edit mode, if they're logged in and active
+    // However, they might not be able to change anything, that will be governed by CanEdit* methods
+    //return UserStore.IsLoggedIn && UserStore.CurrentUser!.Status == UserStatus.Active;
   }
 
   grammaticalClassToString(grammaticalClass: number): string {
