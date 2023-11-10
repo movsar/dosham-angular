@@ -21,6 +21,7 @@ import { TranslationComponent } from './views/translation/translation.component'
 import { EntryActionButtonsComponent } from './views/entry-action-buttons/entry-action-buttons.component';
 import { MainComponent } from './pages/main/main.component';
 import { IndexComponent } from './pages/index/index.component';
+import { PagerComponent } from './views/pager/pager.component';
 import { GraphQLModule } from './graphql.module';
 import { HttpClientModule } from '@angular/common/http';
 
@@ -34,6 +35,7 @@ import { HttpClientModule } from '@angular/common/http';
     EntryActionButtonsComponent,
     MainComponent,
     IndexComponent,
+    PagerComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,1 +1,43 @@
-<p>index works!</p>
+<!-- index.component.html - Angular Template -->
+<h4 class="mt-2">
+  {{ "Index" }}
+</h4>
+
+<hr />
+
+<!-- Top controls -->
+<div *ngIf="entries" class="text-center">
+  <div class="letters">
+    <button
+      *ngFor="let letter of letters"
+      class="letter-button"
+      (click)="letterSelectionHandler(letter)"
+    >
+      {{ letter }}
+    </button>
+  </div>
+
+  <div class="mt-2 mb-2">
+    <app-pager
+      [currentPage]="currentPage"
+      [totalPages]="totalPages"
+      (selectedPage)="selectPage($event)"
+    ></app-pager>
+  </div>
+</div>
+
+<!-- Main content -->
+<div *ngIf="!entries">
+  <p>
+    <em>{{ "Loading" }}...</em>
+  </p>
+</div>
+<!-- <app-entries-presenter
+  *ngIf="entries"
+  [entries]="entries"
+></app-entries-presenter> -->
+
+<!-- Bottom controls -->
+<!-- Similar to top controls... -->
+
+<div class="mb-4"></div>
