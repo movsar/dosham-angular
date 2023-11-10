@@ -35,19 +35,9 @@ export class ApiRequestService {
       }
     `;
 
-    // Create a deep copy of the filtrationFlags object
-    const modifiedFiltrationFlags: any = JSON.parse(JSON.stringify(filtrationFlags));
-
-    // Modify entryTypes in the copy
-    if (modifiedFiltrationFlags.entryFilters?.entryTypes) {
-      modifiedFiltrationFlags.entryFilters.entryTypes = modifiedFiltrationFlags.entryFilters.entryTypes.map((type:EntryType) => 
-        EntryType[type].toUpperCase()
-      );
-    }
-  
     const variables = {
-      "recordTypeName": RecordType[recordType],
-      "filtrationFlags": modifiedFiltrationFlags,
+      recordTypeName: RecordType[recordType],
+      filtrationFlags: this.adjustFiltrationFlags(filtrationFlags),
     };
 
     const response = await this.makeRequest(
@@ -67,8 +57,8 @@ export class ApiRequestService {
   ): Promise<RequestResult> {
     const method = 'take';
     const FIND_ENTRIES_QUERY = gql`
-      query ${method}($recordTypeName: String!, $offset: Int!, $limit: Int!) {
-        ${method}(recordTypeName: $recordTypeName, offset: $offset, limit: $limit) {
+      query ${method}($recordTypeName: String!, $offset: Int!, $limit: Int!, $filtrationFlags: FiltrationFlagsInput) {
+        ${method}(recordTypeName: $recordTypeName, offset: $offset, limit: $limit, filtrationFlags: $filtrationFlags) {
           success
           errorMessage
           serializedData
@@ -76,7 +66,12 @@ export class ApiRequestService {
       }
     `;
 
-    const variables = { recordTypeName: recordType.toString(), offset, limit };
+    const variables = {
+      recordTypeName: recordType.toString(),
+      offset,
+      limit,
+      filtrationFlags: this.adjustFiltrationFlags(filtrationFlags),
+    };
 
     const response = await this.makeRequest(
       method,
@@ -156,9 +151,20 @@ export class ApiRequestService {
     }
   }
 
-  private parseEntryType(entryType: EntryType): string{
-    const t = entryType.toString().toUpperCase();
-    return t;
-  }
+  adjustFiltrationFlags(filtrationFlags: IFiltrationFlags) {
+    // Create a deep copy of the filtrationFlags object
+    const modifiedFiltrationFlags: any = JSON.parse(
+      JSON.stringify(filtrationFlags)
+    );
 
+    // Modify entryTypes in the copy
+    if (modifiedFiltrationFlags.entryFilters?.entryTypes) {
+      modifiedFiltrationFlags.entryFilters.entryTypes =
+        modifiedFiltrationFlags.entryFilters.entryTypes.map((type: EntryType) =>
+          EntryType[type].toUpperCase()
+        );
+    }
+
+    return modifiedFiltrationFlags;
+  }
 }

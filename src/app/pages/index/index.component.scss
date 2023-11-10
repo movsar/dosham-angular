@@ -1,4 +1,12 @@
 :host {
-    flex: 1; // This means the main content will take up the remaining space
-    padding: 1rem; // Padding for the main content
+  flex: 1; // This means the main content will take up the remaining space
+  padding: 4rem; // Padding for the main content
+
+  .text-center {
+    text-align: center;
+  }
+
+  .pager {
+    margin: 10px;
+  }
 }

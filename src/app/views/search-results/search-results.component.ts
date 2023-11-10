@@ -2,7 +2,6 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { IEntry, EntryType } from 'src/app/models/entry.model';
 import { ContentStoreService } from 'src/app/services/content-store.service';
-import { SearchService } from 'src/app/services/search.service';
 
 @Component({
   selector: 'app-search-results',

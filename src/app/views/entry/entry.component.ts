@@ -11,6 +11,11 @@ export class EntryComponent {
   @Output() pronunciationRequested = new EventEmitter<void>();
 
   public get Subheader(): string {
+    if (!this.entry?.Source?.Name){
+      // console.warn(`Entry without a source name ${this.entry?.Content} : ${this.entry?.EntryId}`);
+      return "";
+    }
+
     const sourceNameTranslation = this.parseSource(this.entry?.Source.Name!)!;
     return sourceNameTranslation;
   }

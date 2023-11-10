@@ -1,11 +1,5 @@
-<h4 class="mt-2">
-  {{ "Index" }}
-</h4>
-
-<hr />
-
 <!-- Top controls -->
-<div *ngIf="_entries" class="text-center">
+<div *ngIf="_entries && _entries.length > 0" class="text-center">
   <div class="letters">
     <button
       *ngFor="let letter of _letters"
@@ -16,7 +10,7 @@
     </button>
   </div>
 
-  <div class="mt-2 mb-2">
+  <div class="pager">
     <app-pager
       [currentPage]="_currentPage"
       [totalPages]="_totalPages"
@@ -25,16 +19,27 @@
   </div>
 </div>
 
-<!-- Main content -->
-<div *ngIf="!_entries">
-  <p>
-    <em>{{ "Loading" }}...</em>
-  </p>
-</div>
-
 <app-search-results></app-search-results>
 
-<!-- Bottom controls -->
+<div *ngIf="_entries && _entries.length > 0" class="text-center">
+  <div class="pager">
+    <app-pager
+      [currentPage]="_currentPage"
+      [totalPages]="_totalPages"
+      (selectedPage)="selectPage($event)"
+    ></app-pager>
+
+    <div class="letters">
+      <button
+        *ngFor="let letter of _letters"
+        class="letter-button"
+        (click)="letterSelectionHandler(letter)"
+      >
+        {{ letter }}
+      </button>
+    </div>
+  </div>
+</div>
 <!-- Similar to top controls... -->
 
 <div class="mb-4"></div>

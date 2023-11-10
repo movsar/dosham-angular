@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { IEntry } from '../models/entry.model';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { SearchService } from './search.service';
 import { ITranslation } from '../models/translation.model';
 import { EntryService } from './entry.service';
 
@@ -14,10 +13,10 @@ export class ContentStoreService {
 
   public currentEntries: IEntry[] = [];
 
-  constructor(private searchService: SearchService, private _entryService: EntryService) { }
+  constructor(private _entryService: EntryService) { }
 
   entryService = this._entryService;
-  
+
   promoteEntry(entry: IEntry) {
 
   }
@@ -29,32 +28,38 @@ export class ContentStoreService {
   promoteTranslation(translation: ITranslation) {
 
   }
+  entryComparator(e1: IEntry, e2: IEntry) {
+    if (e1.Content > e2.Content) {
+      return 1;
+    } else {
+      return -1;
+    }
+  }
+  setCurrentEntries(entries :IEntry[]){
+    this.currentEntries = entries.sort(this.entryComparator);
+    this.currentEntries.map(e => e.Content = e.Content.substring(0,1).toUpperCase() + e.Content.substring(1));
+    this.entriesSubject.next(this.currentEntries);
+  }
 
   async findEntries(inputText: string) {
     if (inputText.length == 0) {
-      this.entriesSubject.next([]);
+      this.setCurrentEntries([]);
     } else {
-      this.currentEntries = await this.searchService.Search(inputText);
-      this.entriesSubject.next(this.currentEntries);
+      this.setCurrentEntries(await this._entryService.search(inputText));
     }
   }
 
   async loadRandomEntries() {
-    this.currentEntries = await this.searchService.GetRandoms(50);
-    this.entriesSubject.next(this.currentEntries);
-  }
-
-  setEntries(entries: IEntry[]): void {
-    this.entriesSubject.next(entries);
+    this.setCurrentEntries(await this._entryService.getRandoms(50));
   }
 
   addEntry(entry: IEntry): void {
     const currentValue = this.entriesSubject.value;
     const updatedValue = [...currentValue, entry];
-    this.entriesSubject.next(updatedValue);
+    this.setCurrentEntries(updatedValue);
   }
 
   clearEntries(): void {
-    this.entriesSubject.next([]);
+    this.setCurrentEntries([]);
   }
 }

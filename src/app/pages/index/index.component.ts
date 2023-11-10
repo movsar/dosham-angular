@@ -9,8 +9,8 @@ import { ContentStoreService } from 'src/app/services/content-store.service';
   styleUrls: ['./index.component.scss'],
 })
 export class IndexComponent implements OnInit {
-  _letters = ['Ӏ', 'А', 'Аь', 'Б', 'В', 'Г', 'ГӀ', 'Д', 'Е', 'Ё', 'Ж', 'З', 'И', 'Й', 'К', 'Кх', 'Къ', 'КӀ', 'Л', 'М', 'Н', 'О', 'Оь', 'П', 'ПӀ', 'Р', 'С', 'Т', 'ТӀ', 'У', 'Уь', 'Ф', 'Х', 'Хь', 'ХӀ', 'Ц', 'ЦӀ', 'Ч', 'ЧӀ', 'Ш', 'Э', 'Ю', 'Юь', 'Я', 'Яь'];
-  _entries?: IEntry[]; // Define EntryModel interface based on the Blazor model
+  public _letters = ['Ӏ', 'А', 'Аь', 'Б', 'В', 'Г', 'ГӀ', 'Д', 'Е', 'Ё', 'Ж', 'З', 'И', 'Й', 'К', 'Кх', 'Къ', 'КӀ', 'Л', 'М', 'Н', 'О', 'Оь', 'П', 'ПӀ', 'Р', 'С', 'Т', 'ТӀ', 'У', 'Уь', 'Ф', 'Х', 'Хь', 'ХӀ', 'Ц', 'ЦӀ', 'Ч', 'ЧӀ', 'Ш', 'Э', 'Ю', 'Юь', 'Я', 'Яь'];
+  _entries?: IEntry[];
   _currentPage = 1;
   _totalPages: number = 0;
   _currentLetter: string = this._letters[0];
@@ -18,6 +18,7 @@ export class IndexComponent implements OnInit {
   constructor(private _contentStore: ContentStoreService) {}
 
   ngOnInit(): void {
+    this._contentStore.setCurrentEntries([]);
     this.letterSelectionHandler(this._letters[0]);
   }
 
@@ -27,7 +28,7 @@ export class IndexComponent implements OnInit {
 
     const filtrationFlags: IFiltrationFlags = {
       entryFilters: {
-        includeOnModeration: true,
+        includeOnModeration: false,
         startsWith: this._currentLetter,
         entryTypes: [EntryType.Word],
       },
@@ -36,6 +37,8 @@ export class IndexComponent implements OnInit {
     try {
       const count = await this._contentStore.entryService.getCount(filtrationFlags);
       this._totalPages = Math.ceil(count / 50);
+
+      await this.getEntries();
     } catch (error) {
       console.error('Error fetching entry count:', error);
     }
@@ -49,12 +52,13 @@ export class IndexComponent implements OnInit {
   private async getEntries(){
     const filtrationFlags: IFiltrationFlags = {
       entryFilters: {
-        includeOnModeration: true,
+        includeOnModeration: false,
         startsWith: this._currentLetter,
         entryTypes: [EntryType.Word],
       },
     };
 
-    await this._contentStore.entryService.take((this._currentPage - 1) * 50, 50, filtrationFlags);
+    this._entries = await this._contentStore.entryService.take((this._currentPage - 1) * 50, 50, filtrationFlags);
+    this._contentStore.setCurrentEntries(this._entries);
   }
 }
