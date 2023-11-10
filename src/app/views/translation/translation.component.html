@@ -1,19 +1,19 @@
-<mat-card *ngIf="translation" class="chldr_translation">
-    <mat-card-subtitle>
-        <span class="chldr_translation_language-code">
-            {{ translation.LanguageCode }}
-        </span>
+<div *ngIf="translation" class="chldr_translation">
+  <mat-card-subtitle>
+    <span class="chldr_translation_language-code">
+      {{ translation.LanguageCode }}
+    </span>
 
-        <span class="chldr_translation_content" (click)="doSearch()">
-            {{ translation.Content }}
+    <span class="chldr_translation_content" (click)="doSearch()">
+      {{ translation.Content }}
 
-            <ng-container *ngIf="canPromote(translation.Rate, translation.UserId)">
-                <mat-icon (click)="promoteTranslation()">check</mat-icon>
-            </ng-container>
-        </span>
+      <ng-container *ngIf="canPromote(translation.Rate, translation.UserId)">
+        <mat-icon (click)="promoteTranslation()">check</mat-icon>
+      </ng-container>
+    </span>
 
-        <div *ngIf="translation.Notes" class="chldr_translation_notes">
-            ({{ translation.Notes }})
-        </div>
-    </mat-card-subtitle>
-</mat-card>
+    <div *ngIf="translation.Notes" class="chldr_translation_notes">
+      ({{ translation.Notes }})
+    </div>
+  </mat-card-subtitle>
+</div>

@@ -1,15 +1,18 @@
 :host {
-    .chldr_translation_actions {
-        cursor: pointer;
-        /*display: none;*/
-    }
+  .chldr_translation {
+    padding: 5px;
+  }
+  .chldr_translation_actions {
+    cursor: pointer;
+    /*display: none;*/
+  }
 
-    .chldr_translation_language-code {
-        font-size: 14px;
-        color: blueviolet;
-    }
+  .chldr_translation_language-code {
+    font-size: 14px;
+    color: blueviolet;
+  }
 
-    .chldr_translation_content {
-        font-size: 14px;
-    }
+  .chldr_translation_content {
+    font-size: 14px;
+  }
 }
