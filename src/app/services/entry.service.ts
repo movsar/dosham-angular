@@ -11,7 +11,7 @@ export class EntryService {
   constructor(private _requestService: ApiRequestService) {}
 
   async search(s: string) {
-    const data = await this._requestService.findEntries(s);
+    const data = await this._requestService.findEntriesRequest(s);
     if (!data.success) {
       throw 'No data received from the GraphQL';
     }
@@ -31,7 +31,7 @@ export class EntryService {
   }
 
   async getCount(filtrationFlags: IFiltrationFlags) {
-    const data = await this._requestService.getCount(
+    const data = await this._requestService.getCountRequest(
       RecordType.Entry,
       filtrationFlags
     );
@@ -43,7 +43,7 @@ export class EntryService {
   }
 
   async take(offset: number, limit: number, filtrationFlags: IFiltrationFlags) {
-    const data = await this._requestService.take(
+    const data = await this._requestService.takeRequest(
       RecordType.Entry,
       offset,
       limit,

@@ -1,4 +1,4 @@
-<div class="chldr_entry_actions" *ngIf="userService.isLoggedIn">
+<div class="chldr_entry_actions" *ngIf="_userStore.isloggedIn">
     <ng-container *ngIf="canPromote">
         <button mat-icon-button (click)="promoteHandler()">
             <mat-icon>check</mat-icon>

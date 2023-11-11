@@ -1,6 +1,6 @@
 import { Component, Input, EventEmitter, Output } from '@angular/core';
 import { IEntry } from 'src/app/models/entry.model';
-import { UserService } from 'src/app/services/user.service';
+import { UserStoreService } from 'src/app/services/user-store.service';
 
 @Component({
   selector: 'app-entry-action-buttons',
@@ -13,7 +13,7 @@ export class EntryActionButtonsComponent {
   @Output() remove = new EventEmitter<void>();
   // Add any other outputs you need for your actions
 
-  constructor(public userService: UserService) { }
+  constructor(public _userStore: UserStoreService) { }
 
   get canPromote(): boolean {
     return false;//this.userService.canPromote(this.entry.rate, this.entry.userId);

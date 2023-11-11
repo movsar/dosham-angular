@@ -32,6 +32,8 @@ import { ProfileComponent } from './pages/profile/profile.component';
 import { ResetPasswordComponent } from './pages/reset-password/reset-password.component';
 import { SetPasswordComponent } from './pages/set-password/set-password.component';
 import { RegistrationComponent } from './pages/registration/registration.component';
+import { FormErrorsComponent } from './views/form-errors/form-errors.component';
+import { EmailSentComponent } from './views/email-sent/email-sent.component';
 
 @NgModule({
   declarations: [
@@ -52,6 +54,8 @@ import { RegistrationComponent } from './pages/registration/registration.compone
     ResetPasswordComponent,
     SetPasswordComponent,
     RegistrationComponent,
+    FormErrorsComponent,
+    EmailSentComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,5 @@
+<div *ngIf="errorMessages.length > 0" class="mat-error form-errors">
+    <div *ngFor="let errorMessage of errorMessages">
+        {{ errorMessage }}
+    </div>
+</div>

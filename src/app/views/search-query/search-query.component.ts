@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable, Subject, debounceTime, exhaustMap, map, tap } from 'rxjs';
-import { UserService } from 'src/app/services/user.service';
 import { ContentStoreService } from 'src/app/services/content-store.service';
 
 @Component({

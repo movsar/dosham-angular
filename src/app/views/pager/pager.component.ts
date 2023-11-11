@@ -1,6 +1,5 @@
 import { Component, Input, EventEmitter, Output } from '@angular/core';
 import { IEntry } from 'src/app/models/entry.model';
-import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-pager',

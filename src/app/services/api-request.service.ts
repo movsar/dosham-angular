@@ -18,9 +18,34 @@ export class ApiRequestService {
   FETCH_POLICY_CACHE_FIRST = 'cache-first';
   FETCH_POLICY_NETWORK_ONLY = 'network-only';
 
-  constructor(private apollo: Apollo) {}
+  constructor(private apollo: Apollo) { }
 
-  public async logInEmailPassword(email :string, password :string): Promise<RequestResult> {
+  public async registerNewUserRequest(email: string, password: string): Promise<RequestResult> {
+    const method = 'registerUser';
+    const FIND_ENTRIES_QUERY = gql`
+      mutation ${method}($email: String!, $password: String!) {
+        ${method}(email: $email, password: $password) {
+          success
+          errorMessage
+          serializedData
+        }
+      }
+    `;
+
+    const variables = {
+      email: email,
+      password: password,
+    };
+
+    const response = await this.makeMutationRequest(
+      method,
+      FIND_ENTRIES_QUERY,
+      variables
+    );
+    return response;
+  }
+
+  public async logInEmailPasswordRequest(email: string, password: string): Promise<RequestResult> {
     const method = 'loginEmailPassword';
     const FIND_ENTRIES_QUERY = gql`
       mutation ${method}($email: String!, $password: String!) {
@@ -37,16 +62,15 @@ export class ApiRequestService {
       password: password,
     };
 
-    const response = await this.makeRequest(
+    const response = await this.makeMutationRequest(
       method,
       FIND_ENTRIES_QUERY,
-      variables,
-      this.FETCH_POLICY_CACHE_FIRST
+      variables
     );
     return response;
   }
 
-  public async getCount(
+  public async getCountRequest(
     recordType: RecordType,
     filtrationFlags: IFiltrationFlags
   ): Promise<RequestResult> {
@@ -66,7 +90,7 @@ export class ApiRequestService {
       filtrationFlags: this.adjustFiltrationFlags(filtrationFlags),
     };
 
-    const response = await this.makeRequest(
+    const response = await this.makeQueryRequest(
       method,
       FIND_ENTRIES_QUERY,
       variables,
@@ -75,7 +99,7 @@ export class ApiRequestService {
     return response;
   }
 
-  public async take(
+  public async takeRequest(
     recordType: RecordType,
     offset: number,
     limit: number,
@@ -99,7 +123,7 @@ export class ApiRequestService {
       filtrationFlags: this.adjustFiltrationFlags(filtrationFlags),
     };
 
-    const response = await this.makeRequest(
+    const response = await this.makeQueryRequest(
       method,
       FIND_ENTRIES_QUERY,
       variables,
@@ -108,7 +132,7 @@ export class ApiRequestService {
     return response;
   }
 
-  public async findEntries(inputText: string): Promise<RequestResult> {
+  public async findEntriesRequest(inputText: string): Promise<RequestResult> {
     const method = 'find';
     const FIND_ENTRIES_QUERY = gql`
       query ${method}($inputText: String!) {
@@ -120,7 +144,7 @@ export class ApiRequestService {
       }
     `;
 
-    return await this.makeRequest(
+    return await this.makeQueryRequest(
       method,
       FIND_ENTRIES_QUERY,
       { inputText },
@@ -140,7 +164,7 @@ export class ApiRequestService {
       }
     `;
 
-    return await this.makeRequest(
+    return await this.makeQueryRequest(
       method,
       GET_RANDOMS_QUERY,
       { count },
@@ -148,7 +172,40 @@ export class ApiRequestService {
     );
   }
 
-  private async makeRequest(
+  private async makeMutationRequest(
+    method: any,
+    query: any,
+    variables: any,
+  ): Promise<RequestResult> {
+    try {
+      // Make the request
+      const response = await firstValueFrom(
+        this.apollo.mutate<any>({
+          mutation: query,
+          variables: variables,
+        })
+      );
+
+      // Check whether the request has been made successfully
+      if (!response || !response.data) {
+        throw new Error('GraphQL request failed');
+      }
+
+      // Extract the response data
+      const data = response.data[method];
+      return data;
+    } catch (error: any) {
+      if (error.networkError) {
+        console.error(error.networkError.error?.errors);
+        throw error.networkError.error?.errors;
+      } else {
+        console.error(error.message);
+        throw error.message;
+      }
+    }
+  }
+
+  private async makeQueryRequest(
     method: any,
     query: any,
     variables: any,
@@ -173,7 +230,13 @@ export class ApiRequestService {
       const data = response.data[method];
       return data;
     } catch (error: any) {
-      throw error.networkError.error?.errors;
+      if (error.networkError) {
+        console.error(error.networkError.error?.errors);
+        throw error.networkError.error?.errors;
+      } else {
+        console.error(error.message);
+        throw error.message;
+      }
     }
   }
 

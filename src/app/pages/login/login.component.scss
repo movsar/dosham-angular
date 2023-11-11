@@ -1,82 +1,86 @@
 // Base styles
 * {
-    box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+button{
+  margin-right: 10px;
+}
+
+// Overall layout
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+  min-height: 100vh;
+  background-color: #f4f4f4;
+  padding: 20px;
+}
+
+// Success alert styling
+.success-alert {
+  background-color: #dff0d8;
+  color: #3c763d;
+  border-color: #d6e9c6;
+  padding: 15px;
+  margin-bottom: 20px;
+  border-radius: 4px;
+  text-align: center;
+  font-size: 1.1em;
+}
+
+// Form styling
+.login-form {
+  width: 100%;
+  max-width: 500px;
+  padding: 20px;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+// Input fields styling
+mat-form-field {
+  width: 100%;
+
+  .mat-form-field-wrapper {
+    padding-bottom: 0.5em;
   }
-  
-  // Overall layout
-  .login-container {
-    display: flex;
-    justify-content: center;
-    align-items: baseline;
-    min-height: 100vh;
-    background-color: #f4f4f4;
-    padding: 20px;
+
+  .mat-form-field-label {
+    color: #666;
   }
-  
-  // Success alert styling
-  .success-alert {
-    background-color: #dff0d8;
-    color: #3c763d;
-    border-color: #d6e9c6;
-    padding: 15px;
-    margin-bottom: 20px;
-    border-radius: 4px;
-    text-align: center;
-    font-size: 1.1em;
+
+  .mat-input-element {
+    padding: 10px;
   }
-  
-  // Form styling
-  .login-form {
-    width: 100%;
-    max-width: 500px;
-    padding: 20px;
-    background: #fff;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+// Button styling
+.button-row {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  button {
+    margin-top: 10px;
   }
-  
-  // Input fields styling
-  mat-form-field {
-    width: 100%;
-  
-    .mat-form-field-wrapper {
-      padding-bottom: 0.5em;
-    }
-  
-    .mat-form-field-label {
-      color: #666;
-    }
-  
-    .mat-input-element {
-      padding: 10px;
-    }
+
+  .mat-raised-button {
+    background-color: #007bff;
+    color: white;
   }
-  
-  // Button styling
-  .button-row {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-  
-    button {
-      margin-top: 10px;
-    }
-  
-    .mat-raised-button {
-      background-color: #007bff;
-      color: white;
-    }
+}
+
+// Footer links
+a {
+  display: block;
+  text-align: center;
+  margin-top: 20px;
+  color: #007bff;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
   }
-  
-  // Footer links
-  a {
-    display: block;
-    text-align: center;
-    margin-top: 20px;
-    color: #007bff;
-    text-decoration: none;
-    &:hover {
-      text-decoration: underline;
-    }
-  }
-  
+}

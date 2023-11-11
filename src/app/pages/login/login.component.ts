@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { UserService } from 'src/app/services/user.service';
+import { UserStoreService } from 'src/app/services/user-store.service';
 
 @Component({
   selector: 'app-login',
@@ -17,8 +17,9 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private _formBuilder: FormBuilder,
-    private _userService: UserService,
-    private _route: ActivatedRoute) {
+    private _userStore: UserStoreService,
+    private _route: ActivatedRoute,
+    private _router: Router) {
     this.loginForm = this._formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]]
@@ -51,15 +52,19 @@ export class LoginComponent implements OnInit {
     }
   }
 
-  async signInWithEmailPassword(email: string, password: string) {
+  async logInEmailPassword(email: string, password: string) {
     try {
-      console.log(email);
-      await this._userService.logInEmailPassword(email, password);
+      await this._userStore.logInEmailPassword(email, password);
       // Navigate to home or dashboard page
-    } catch (error) {
+    } catch (error: any) {
       // Handle login error
-      this.errorMessages.push('Login failed');
+      this.errorMessages.push(error);
     }
+  }
+
+  onRegisterClick():void {
+    console.log("clicked");
+    this._router.navigate(['/registration'])
   }
 
   async onSubmit() {
@@ -71,6 +76,6 @@ export class LoginComponent implements OnInit {
     const email = this.loginForm.get('email')?.value;
     const password = this.loginForm.get('password')?.value;
 
-    await this.signInWithEmailPassword(email, password);
+    await this.logInEmailPassword(email, password);
   }
 }

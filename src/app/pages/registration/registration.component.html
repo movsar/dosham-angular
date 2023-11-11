@@ -1,1 +1,55 @@
-<p>registration works!</p>
+<h3>{{ 'Registration' }}</h3>
+
+<hr />
+
+<ng-container *ngIf="formSubmitted; else registrationForm">
+    <app-email-sent></app-email-sent>
+</ng-container>
+
+<ng-template #registrationForm>
+    <div class="col-12 d-flex justify-content-center mt-lg-5">
+        <form class="col-6" data-id="form_container" [formGroup]="registrationFormGroup"
+            (ngSubmit)="validateAndSubmit()">
+
+            <!-- Email and Username -->
+            <mat-form-field class="full-width" appearance="fill">
+                <mat-label>{{ 'Email' }}</mat-label>
+                <input matInput type="email" formControlName="email" required>
+            </mat-form-field>
+
+            <!-- Password -->
+            <mat-form-field class="full-width" appearance="fill">
+                <mat-label>{{ 'Password' }}</mat-label>
+                <input matInput type="password" formControlName="password" required>
+            </mat-form-field>
+
+            <mat-form-field class="full-width" appearance="fill">
+                <mat-label>{{ 'Confirm Password' }}</mat-label>
+                <input matInput type="password" formControlName="passwordConfirmation" required>
+            </mat-form-field>
+
+            <!-- Personal Details -->
+            <mat-form-field class="full-width" appearance="fill">
+                <mat-label>{{ 'First Name' }}</mat-label>
+                <input matInput type="text" formControlName="firstName">
+            </mat-form-field>
+
+            <mat-form-field class="full-width" appearance="fill">
+                <mat-label>{{ 'Last Name' }}</mat-label>
+                <input matInput type="text" formControlName="lastName">
+            </mat-form-field>
+
+            <!-- Register Button -->
+            <div class="row d-flex align-content-end">
+                <div class="col">
+                    <button mat-raised-button color="primary" type="submit" class="btn-block mb-4">
+                        {{ 'Register' }}
+                    </button>
+                </div>
+            </div>
+
+            <app-form-errors [errorMessages]="errorMessages"></app-form-errors>
+
+        </form>
+    </div>
+</ng-template>
