@@ -20,6 +20,32 @@ export class ApiRequestService {
 
   constructor(private apollo: Apollo) {}
 
+  public async logInEmailPassword(email :string, password :string): Promise<RequestResult> {
+    const method = 'loginEmailPassword';
+    const FIND_ENTRIES_QUERY = gql`
+      mutation ${method}($email: String!, $password: String!) {
+        ${method}(email: $email, password: $password) {
+          success
+          errorMessage
+          serializedData
+        }
+      }
+    `;
+
+    const variables = {
+      email: email,
+      password: password,
+    };
+
+    const response = await this.makeRequest(
+      method,
+      FIND_ENTRIES_QUERY,
+      variables,
+      this.FETCH_POLICY_CACHE_FIRST
+    );
+    return response;
+  }
+
   public async getCount(
     recordType: RecordType,
     filtrationFlags: IFiltrationFlags

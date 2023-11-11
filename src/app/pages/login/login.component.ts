@@ -11,8 +11,6 @@ import { UserService } from 'src/app/services/user.service';
 export class LoginComponent implements OnInit {
   loginForm!: FormGroup;
   emailConfirmationCompleted = false;
-  email: string = '';
-  password: string = '';
   formSubmitted: boolean = false;
   errorMessages: string[] = [];
   private pageInitialized = false;
@@ -53,9 +51,10 @@ export class LoginComponent implements OnInit {
     }
   }
 
-  async signInWithEmailPassword() {
+  async signInWithEmailPassword(email: string, password: string) {
     try {
-      await this._userService.logInEmailPassword(this.email, this.password);
+      console.log(email);
+      await this._userService.logInEmailPassword(email, password);
       // Navigate to home or dashboard page
     } catch (error) {
       // Handle login error
@@ -63,15 +62,15 @@ export class LoginComponent implements OnInit {
     }
   }
 
-  async validateAndSubmit() {
-    // Validation logic here
-    await this.signInWithEmailPassword();
-  }
-
-  onSubmit(): void {
-    if (this.loginForm.valid) {
-      console.log('Form Value', this.loginForm.value);
-      // Implement your login logic here
+  async onSubmit() {
+    if (!this.loginForm.valid) {
+      console.error("form is not valid");;
+      return;
     }
+
+    const email = this.loginForm.get('email')?.value;
+    const password = this.loginForm.get('password')?.value;
+
+    await this.signInWithEmailPassword(email, password);
   }
 }
