@@ -27,21 +27,24 @@
       </a>
       <hr class="separator" />
 
-      <!-- <ng-container *ngIf="isLoggedIn">
-                <a mat-list-item [routerLink]="['/profile']">
-                    <mat-icon>person</mat-icon>
-                    Profile
-                </a>
-                <div class="email-display">
-                    {{currentUserEmail}}
-                </div>
-            </ng-container>
-            <ng-container *ngIf="!isLoggedIn">
-                <a mat-list-item [routerLink]="['/login']">
-                    <mat-icon>login</mat-icon>
-                    Log in
-                </a>
-            </ng-container> -->
+      <!-- 
+        <ng-container *ngIf="isLoggedIn">
+            <a mat-list-item [routerLink]="['/profile']">
+                <mat-icon>person</mat-icon>
+                Profile
+            </a>
+            <div class="email-display">
+                {{currentUserEmail}}
+            </div>
+        </ng-container>
+      -->
+
+      <ng-container *ngIf="!isLoggedIn">
+          <a mat-list-item [routerLink]="['/login']">
+              <mat-icon>login</mat-icon>
+              Log in
+          </a>
+      </ng-container> 
 
       <hr class="separator" />
 

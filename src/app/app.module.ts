@@ -13,7 +13,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatListModule } from '@angular/material/list';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenavModule } from '@angular/material/sidenav';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SearchQueryComponent } from './views/search-query/search-query.component';
 import { SearchResultsComponent } from './views/search-results/search-results.component';
 import { EntryComponent } from './views/entry/entry.component';
@@ -27,6 +27,11 @@ import { HttpClientModule } from '@angular/common/http';
 import { DonateComponent } from './pages/donate/donate.component';
 import { ApiComponent } from './pages/api/api.component';
 import { TranslationActionButtonsComponent } from './views/translation-action-buttons/translation-action-buttons.component';
+import { LoginComponent } from './pages/login/login.component';
+import { ProfileComponent } from './pages/profile/profile.component';
+import { ResetPasswordComponent } from './pages/reset-password/reset-password.component';
+import { SetPasswordComponent } from './pages/set-password/set-password.component';
+import { RegistrationComponent } from './pages/registration/registration.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +47,11 @@ import { TranslationActionButtonsComponent } from './views/translation-action-bu
     DonateComponent,
     ApiComponent,
     TranslationActionButtonsComponent,
+    LoginComponent,
+    ProfileComponent,
+    ResetPasswordComponent,
+    SetPasswordComponent,
+    RegistrationComponent,
   ],
   imports: [
     BrowserModule,
@@ -58,6 +68,7 @@ import { TranslationActionButtonsComponent } from './views/translation-action-bu
     FormsModule,
     GraphQLModule,
     HttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent],
