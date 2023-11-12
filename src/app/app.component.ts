@@ -1,6 +1,9 @@
 import { Component, ViewChild, AfterViewInit, OnInit } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { MatSidenav } from '@angular/material/sidenav';
+import { UserStoreService } from './services/user-store.service';
+import { IUser } from './models/user-dto.interface';
+import { ISessionInformation } from './models/session.interface';
 
 @Component({
   selector: 'app-root',
@@ -8,9 +11,14 @@ import { MatSidenav } from '@angular/material/sidenav';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
+  currentUserEmail: string | undefined = undefined;
+
   title = 'dosham';
 
-  constructor(private observer: BreakpointObserver) {}
+  constructor(
+    private observer: BreakpointObserver,
+    public _userStore: UserStoreService
+  ) { }
 
   @ViewChild(MatSidenav)
   sidenav!: MatSidenav;
@@ -24,6 +32,10 @@ export class AppComponent {
         this.isMobile = false;
       }
     });
+
+    this._userStore.activeSession.subscribe((session: ISessionInformation | undefined) => {
+      this.currentUserEmail = session?.User?.Email!;
+    });
   }
   toggleMenu() {
     if (this.isMobile) {
@@ -35,8 +47,6 @@ export class AppComponent {
     }
   }
   // Simulated user state for demonstration. Replace with your actual logic.
-  isLoggedIn = false; // Initially set to false. Change this to use your actual authentication service or logic.
-  currentUserEmail = 'user@example.com'; // Dummy email. Replace with the actual email once the user is logged in.
 
   searchQuery: string = '';
 

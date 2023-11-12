@@ -5,5 +5,5 @@ export interface ISessionInformation {
     AccessToken: string,
     RefreshToken: string,
     Status: SessionStatus,
-    UserDto: IUser
+    User: IUser
 };

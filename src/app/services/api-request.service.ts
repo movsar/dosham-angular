@@ -4,12 +4,7 @@ import { firstValueFrom } from 'rxjs';
 import { IFiltrationFlags } from '../models/filtration-flags.model';
 import { RecordType } from '../enums/record-type.enum';
 import { EntryType } from '../models/entry.model';
-
-interface RequestResult {
-  success: boolean;
-  errorMessage: string;
-  serializedData: string;
-}
+import { RequestResult } from '../models/request-result.interface';
 
 @Injectable({
   providedIn: 'root',

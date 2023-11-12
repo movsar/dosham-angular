@@ -13,11 +13,7 @@ export class TranslationActionButtonsComponent {
   @Input() EditHandler!: Function;
   @Input() PromoteHandler!: Function;
 
-  constructor(private userStore: UserStoreService) {}
-
-  get isLoggedIn(): boolean {
-    return this.userStore.isloggedIn;
-  }
+  constructor(private userStore: UserStoreService) { }
 
   get currentUser(): any {
     // Replace 'any' with the actual type of your current user

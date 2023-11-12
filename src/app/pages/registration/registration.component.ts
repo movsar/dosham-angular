@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { UserStoreService } from 'src/app/services/user-store.service';
 
 @Component({
   selector: 'app-registration',
@@ -18,13 +20,22 @@ export class RegistrationComponent {
   formSubmitted = false;
   errorMessages: string[] = [];
 
-  validateAndSubmit(): void {
-    if (this.registrationFormGroup.valid) {
-      // Implement your submission logic here
-      console.log(this.registrationFormGroup.value);
-    } else {
-      // Handle validation errors
-      console.error('Form is not valid');
+  constructor(private _userStore: UserStoreService, private _router: Router) { }
+
+  async onSubmit() {
+    if (!this.registrationFormGroup.valid) {
+      console.error("Please fill the required fields");;
+      return;
+    }
+
+    const email = this.registrationFormGroup.get('email')?.value!;
+    const password = this.registrationFormGroup.get('password')?.value!;
+
+    try {
+      await this._userStore.registerNewUser(email, password);
+      this._router.navigate(['/home'])
+    } catch (error: any) {
+      this.errorMessages.push(error.toString());
     }
   }
 }

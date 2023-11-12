@@ -7,6 +7,7 @@ import { ApiComponent } from './pages/api/api.component';
 import { LoginComponent } from './pages/login/login.component';
 import { RegistrationComponent } from './pages/registration/registration.component';
 import { ResetPasswordComponent } from './pages/reset-password/reset-password.component';
+import { ProfileComponent } from './pages/profile/profile.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -15,6 +16,7 @@ const routes: Routes = [
   { path: 'donate', component: DonateComponent },
   { path: 'api', component: ApiComponent },
   { path: 'login', component: LoginComponent },
+  { path: 'profile', component: ProfileComponent },
   { path: 'registration', component: RegistrationComponent },
   { path: 'password-reset', component: ResetPasswordComponent },
 ];

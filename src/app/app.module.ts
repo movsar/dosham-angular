@@ -34,6 +34,8 @@ import { SetPasswordComponent } from './pages/set-password/set-password.componen
 import { RegistrationComponent } from './pages/registration/registration.component';
 import { FormErrorsComponent } from './views/form-errors/form-errors.component';
 import { EmailSentComponent } from './views/email-sent/email-sent.component';
+import { UserStoreService } from './services/user-store.service';
+import { ContentStoreService } from './services/content-store.service';
 
 @NgModule({
   declarations: [
@@ -74,7 +76,7 @@ import { EmailSentComponent } from './views/email-sent/email-sent.component';
     HttpClientModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [UserStoreService, ContentStoreService],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }

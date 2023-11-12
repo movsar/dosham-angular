@@ -55,7 +55,7 @@ export class LoginComponent implements OnInit {
   async logInEmailPassword(email: string, password: string) {
     try {
       await this._userStore.logInEmailPassword(email, password);
-      // Navigate to home or dashboard page
+      this._router.navigate(['/home'])
     } catch (error: any) {
       // Handle login error
       this.errorMessages.push(error);
@@ -63,13 +63,12 @@ export class LoginComponent implements OnInit {
   }
 
   onRegisterClick():void {
-    console.log("clicked");
     this._router.navigate(['/registration'])
   }
 
   async onSubmit() {
     if (!this.loginForm.valid) {
-      console.error("form is not valid");;
+      this.errorMessages.push("Please fill the required fields");;
       return;
     }
 
