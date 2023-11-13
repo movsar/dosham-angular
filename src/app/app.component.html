@@ -10,52 +10,56 @@
     <mat-nav-list>
       <a mat-list-item routerLink="/home">
         <mat-icon>home</mat-icon>
-        Home
+        Главная
       </a>
       <a mat-list-item routerLink="/index">
         <mat-icon>bookmark</mat-icon>
-        Index
+        Указатель
       </a>
 
       <a mat-list-item [routerLink]="['/donate']">
         <mat-icon>attach_money</mat-icon>
-        Donate
+        Поддержать
       </a>
 
       <ng-container *ngIf="_userStore.CurrentUser">
         <a mat-list-item [routerLink]="['/profile']">
           <mat-icon>person</mat-icon>
-          Profile
+          Профиль
         </a>
         <div class="email-display">
           {{currentUserEmail}}
         </div>
       </ng-container>
-
+      <!-- 
       <ng-container *ngIf="!currentUserEmail">
         <a mat-list-item [routerLink]="['/login']">
           <mat-icon>login</mat-icon>
           Log in
         </a>
-      </ng-container>
+      </ng-container> -->
 
       <hr class="separator" />
 
-      <a mat-list-item [routerLink]="['/api']"> API </a>
+      <a mat-list-item [routerLink]="['/api']">
+        <mat-icon>api</mat-icon>
+        API
+      </a>
     </mat-nav-list>
 
     <div class="actions-container">
-      <!-- <button mat-button color="primary" (click)="loadRandomEntries()">
+      <!-- <button mat-button color="primary" (click)="LoadRandomEntries()">
         {{ "Randoms" }}
-      </button> -->
+      </button>
 
+      <button mat-button color="primary" (click)="LoadLatestEntries()">
+        {{ 'Latest' }}
+      </button> -->
       <!-- <button mat-button color="primary" (click)="toggleOnModerationFlag()">
             {{ 'On moderation' }}
         </button>
     
-        <button mat-button color="primary" (click)="loadLatestEntries()">
-            {{ 'Latest' }}
-        </button>
+        
     
         <a *ngIf="isLoggedIn" mat-button color="accent" routerLink="/entry/edit">
             {{ 'AddAsk' }}

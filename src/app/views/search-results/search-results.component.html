@@ -4,12 +4,10 @@
   </ng-container>
 </div>
 
-<div *ngIf="!inProgress && entries.length == 0">
+<div *ngIf="!inProgress && entries.length == 0" class="message">
   <p>No entries found.</p>
 </div>
 
-<div *ngIf="inProgress">
-  <p>
-    Fetching ...
-  </p>
+<div *ngIf="inProgress" class="message">
+  <p>Fetching ...</p>
 </div>

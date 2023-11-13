@@ -55,15 +55,19 @@ export class AppComponent {
 
   searchQuery: string = '';
 
-  search(event: any) {
+  Search(event: any) {
     // Implement your search logic here
   }
 
-  loadRandomEntries() {
+  LoadRandomEntries() {
     // Implement loading random entries logic here
   }
 
-  toggleOnModerationFlag() {
+  LoadLatestEntries() {
+
+  }
+
+  ToggleOnModerationFlag() {
     // Implement logic for toggling OnModeration flag
   }
 }
