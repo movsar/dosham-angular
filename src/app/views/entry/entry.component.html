@@ -3,7 +3,7 @@
     <div class="chldr_entry_header">
       {{ Header }}
       <mat-icon *ngIf="Entry.Sounds.length > 0" (click)="listenToPronunciation()">volume_up</mat-icon>
-      <a *ngIf="UserStore.CurrentUser!.CanEdit(Entry.Rate, Entry.UserId)" [routerLink]="['/entry/edit', Entry.EntryId]">
+      <a *ngIf="UserStore.CurrentUser && UserStore.CurrentUser!.CanEdit(Entry.Rate, Entry.UserId)" [routerLink]="['/entry/edit', Entry.EntryId]">
         <mat-icon>edit</mat-icon>
       </a>
     </div>
@@ -17,7 +17,7 @@
       [
       <span *ngFor="let subEntry of Entry.SubEntries">
         {{ subEntry.Content }}
-        <a *ngIf="UserStore.CurrentUser!.CanEdit(subEntry.Rate, subEntry.UserId)"
+        <a *ngIf="UserStore.CurrentUser && UserStore.CurrentUser!.CanEdit(subEntry.Rate, subEntry.UserId)"
           [routerLink]="['/entry/edit', subEntry.EntryId]">
           <mat-icon>edit</mat-icon>
         </a>

@@ -14,9 +14,9 @@
 }
 
 .arrow {
-  color: #BBF; 
+  color: #BBF;
   display: block;
-  font-size: 12px; 
+  font-size: 12px;
   margin: 2px 0;
 }
 
@@ -24,20 +24,6 @@
 .email-display {
   margin-left: 20px;
   color: green;
-}
-
-h1 {
-  padding: 0 1rem;
-}
-
-h2 {
-  padding: 1rem;
-}
-
-mat-toolbar {
-  position: fixed;
-  top: 0;
-  z-index: 2;
 }
 
 mat-sidenav-container {
@@ -58,13 +44,5 @@ mat-sidenav-container {
 mat-sidenav {
   display: none;
 
-  @media screen and (min-width: 600px) {
-  }
-}
-
-// The main content area
-mat-sidenav-content {
-
-  @media screen and (max-width: 700px) {
-  }
+  @media screen and (min-width: 600px) {}
 }

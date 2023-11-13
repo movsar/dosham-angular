@@ -1,6 +1,5 @@
 import { Component, Input } from '@angular/core';
 import { ITranslation } from 'src/app/models/translation.model';
-import { User } from 'src/app/models/user.model';
 import { UserStoreService } from 'src/app/services/user-store.service';
 
 @Component({
@@ -14,10 +13,6 @@ export class TranslationActionButtonsComponent {
   @Input() EditHandler!: Function;
   @Input() PromoteHandler!: Function;
 
-  constructor(private userStore: UserStoreService) { }
+  constructor(public UserStore: UserStoreService) { }
 
-  get CurrentUser(): User | undefined {
-    // Replace 'any' with the actual type of your current user
-    return this.userStore.CurrentUser;
-  }
 }

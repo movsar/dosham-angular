@@ -35,7 +35,9 @@ export class SearchResultsComponent implements OnInit, OnDestroy {
         }
       })
     );
-    this.inProgress = true;
+    if (!this.entries || this.entries.length == 0){
+      this.inProgress = true;
+    }
   }
 
   ngOnDestroy(): void {

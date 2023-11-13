@@ -1,6 +1,9 @@
 :host {
   flex: 1; // This means the main content will take up the remaining space
-  padding: 4rem; // Padding for the main content
+
+  .letters {
+    text-align: center;
+  }
 
   .letter-button {
     padding: 2px 5px;
@@ -8,10 +11,6 @@
     font-size: 12px;
     min-width: auto;
     min-height: auto;
-  }
-
-  .letters {
-    text-align: center;
   }
 
   .pager {
