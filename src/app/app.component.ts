@@ -37,6 +37,11 @@ export class AppComponent {
       this.currentUserEmail = session?.User?.Email!;
     });
   }
+
+  onSidenavToggle(opened: boolean) {
+    this.isCollapsed = !opened;
+  }
+
   toggleMenu() {
     if (this.isMobile) {
       this.sidenav.toggle();

@@ -1,3 +1,26 @@
+.toggle-sidebar-btn {
+  position: fixed;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  z-index: 1000;
+  background: transparent;
+  border: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  padding: 5px;
+}
+
+.arrow {
+  color: #BBF; 
+  display: block;
+  font-size: 12px; 
+  margin: 2px 0;
+}
+
+
 .email-display {
   margin-left: 20px;
   color: green;
@@ -34,18 +57,14 @@ mat-sidenav-container {
 // The sidebar initial
 mat-sidenav {
   display: none;
-  padding-top: 3.5rem;
 
   @media screen and (min-width: 600px) {
-    padding-top: 4rem;
   }
 }
 
 // The main content area
 mat-sidenav-content {
-  padding-top: 4rem;
 
   @media screen and (max-width: 700px) {
-    padding-top: 3.5rem;
   }
 }
