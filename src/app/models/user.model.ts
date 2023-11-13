@@ -19,6 +19,11 @@ export class User {
     UpdatedAt?: Date;
 
     constructor(userFromJson: User) {
+        if (!userFromJson || !userFromJson.Id) {
+            console.error("something went wrong while constructing the user object");
+            return;
+        }
+
         this.Id = userFromJson.Id;
         this.Email = userFromJson.Email;
         this.Rate = userFromJson.Rate;
