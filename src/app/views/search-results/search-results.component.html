@@ -1,6 +1,6 @@
 <div *ngIf="entries && entries.length > 0;" class="chldr_entries">
   <ng-container *ngFor="let entry of entries">
-    <app-entry [_entry]="entry" class="chldr_entry"></app-entry>
+    <app-entry [Entry]="entry" class="chldr_entry"></app-entry>
   </ng-container>
 </div>
 

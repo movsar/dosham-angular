@@ -1,6 +1,7 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { WordType } from 'src/app/enums/word-type.enum';
 import { IEntry } from 'src/app/models/entry.model';
+import { UserStoreService } from 'src/app/services/user-store.service';
 
 @Component({
   selector: 'app-entry',
@@ -8,17 +9,19 @@ import { IEntry } from 'src/app/models/entry.model';
   styleUrls: ['./entry.component.scss'],
 })
 export class EntryComponent {
-  @Input() _entry!: IEntry;
+  @Input() Entry!: IEntry;
   @Output() pronunciationRequested = new EventEmitter<void>();
 
+  constructor(public UserStore: UserStoreService){}
+
   public get Header(): string {
-    let header: string = this._entry.Content; // Assuming Entry and Content can't be null/undefined
+    let header: string = this.Entry.Content; // Assuming Entry and Content can't be null/undefined
     let className: string = '';
 
-    if (this._entry.Details) {
-      let details: any = this._entry.Details;
+    if (this.Entry.Details) {
+      let details: any = this.Entry.Details;
 
-      switch (this._entry.Subtype) {
+      switch (this.Entry.Subtype) {
         case WordType.Noun:
           if (details && details.Class !== 0) {
             className = this.grammaticalClassToString(details.Class);
@@ -41,12 +44,12 @@ export class EntryComponent {
   }
 
   public get Subheader(): string {
-    if (!this._entry?.Source?.Name) {
+    if (!this.Entry?.Source?.Name) {
       // console.warn(`Entry without a source name ${this.entry?.Content} : ${this.entry?.EntryId}`);
       return '';
     }
 
-    const sourceNameTranslation = this.parseSource(this._entry?.Source.Name!)!;
+    const sourceNameTranslation = this.parseSource(this.Entry?.Source.Name!)!;
     return sourceNameTranslation;
   }
 
@@ -72,12 +75,6 @@ export class EntryComponent {
 
   share() {
     // implement your share logic
-  }
-
-  canEdit() {
-    // Anyone should be able to open an entry for edit mode, if they're logged in and active
-    // However, they might not be able to change anything, that will be governed by CanEdit* methods
-    //return UserStore.IsLoggedIn && UserStore.CurrentUser!.Status == UserStatus.Active;
   }
 
   grammaticalClassToString(grammaticalClass: number): string {

@@ -1,9 +1,9 @@
 import { SessionStatus } from "../enums/session.enum"
-import { IUser } from "./user-dto.interface"
+import { User } from "./user.model"
 
 export interface ISessionInformation {
     AccessToken: string,
     RefreshToken: string,
     Status: SessionStatus,
-    User: IUser
+    User: User
 };

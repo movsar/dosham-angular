@@ -1,11 +1,11 @@
-<ng-container *ngIf="_entry">
+<ng-container *ngIf="Entry">
   <mat-card class="chldr_entry">
     <div class="chldr_entry_header">
       {{ Header }}
-      <!-- <mat-icon *ngIf="entry.sounds?.length > 0" (click)="listenToPronunciation()">volume_up</mat-icon> -->
-      <!-- <a *ngIf="canEdit()" [routerLink]="['/entry/edit', entry.entryId]">
+      <mat-icon *ngIf="Entry.Sounds.length > 0" (click)="listenToPronunciation()">volume_up</mat-icon>
+      <a *ngIf="UserStore.CurrentUser!.CanEdit(Entry.Rate, Entry.UserId)" [routerLink]="['/entry/edit', Entry.EntryId]">
         <mat-icon>edit</mat-icon>
-      </a> -->
+      </a>
     </div>
 
     <div *ngIf="Subheader" class="chldr_entry_sub-header">
@@ -13,32 +13,25 @@
     </div>
 
     <!-- Entry subtype and details handling can be added here -->
-    <div *ngIf="(_entry?.SubEntries)!.length > 0" class="flex-column">
+    <div *ngIf="(Entry?.SubEntries)!.length > 0" class="flex-column">
       [
-      <span *ngFor="let subEntry of _entry.SubEntries">
+      <span *ngFor="let subEntry of Entry.SubEntries">
         {{ subEntry.Content }}
-        <!-- <a *ngIf="canEdit()" [routerLink]="['/entry/edit', entry.entryId]">
+        <a *ngIf="UserStore.CurrentUser!.CanEdit(subEntry.Rate, subEntry.UserId)"
+          [routerLink]="['/entry/edit', subEntry.EntryId]">
           <mat-icon>edit</mat-icon>
-        </a> -->
+        </a>
       </span>
       ]
     </div>
 
     <div class="chldr_entry_translations mt-2">
-      <app-translation
-        *ngFor="let translation of _entry.Translations"
-        [_translation]="translation"
-        (promote)="promoteTranslation(translation)"
-      >
+      <app-translation *ngFor="let translation of Entry.Translations" [_translation]="translation"
+        (promote)="promoteTranslation(translation)">
       </app-translation>
     </div>
 
-    <app-entry-action-buttons
-      [entry]="_entry"
-      (promote)="promoteEntry()"
-      (remove)="remove()"
-      (share)="share()"
-    >
+    <app-entry-action-buttons [entry]="Entry" (promote)="promoteEntry()" (remove)="remove()" (share)="share()">
     </app-entry-action-buttons>
   </mat-card>
 </ng-container>

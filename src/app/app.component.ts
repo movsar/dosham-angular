@@ -2,7 +2,7 @@ import { Component, ViewChild, AfterViewInit, OnInit } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { MatSidenav } from '@angular/material/sidenav';
 import { UserStoreService } from './services/user-store.service';
-import { IUser } from './models/user-dto.interface';
+import { User } from './models/user.model';
 import { ISessionInformation } from './models/session.interface';
 
 @Component({

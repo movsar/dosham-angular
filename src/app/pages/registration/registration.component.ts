@@ -32,7 +32,7 @@ export class RegistrationComponent {
     const password = this.registrationFormGroup.get('password')?.value!;
 
     try {
-      await this._userStore.registerNewUser(email, password);
+      await this._userStore.RegisterNewUser(email, password);
       this._router.navigate(['/home'])
     } catch (error: any) {
       this.errorMessages.push(error.toString());
