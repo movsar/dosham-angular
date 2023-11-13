@@ -1,3 +1,5 @@
+@import 'variables';
+
 .toggle-sidebar-btn {
   position: fixed;
   top: 50%;
@@ -33,10 +35,10 @@ mat-sidenav-container {
 // The sidebar expanded
 .expanded {
   display: flex;
-  width: 15vw;
+  width: $sidebar-width;
 
   @media screen and (max-width: 700px) {
-    width: 50vw;
+    width: $mobile-sidebar-width;
   }
 }
 
