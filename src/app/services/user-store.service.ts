@@ -15,45 +15,37 @@ export class UserStoreService {
   public get CurrentUser(): User | undefined {
     return this._activeSessionSubject.getValue()?.User;
   }
+
   async updatePassword(email: string, token: string, newPassword: string) {
-    // Implement the logic to update the password
-  }
-  constructor(private _requestService: ApiRequestService) {
-    const sessionSerialized = localStorage.getItem("session");
-    if (!sessionSerialized) {
-      return;
-    }
-
-    const session = JSON.parse(sessionSerialized) as ISessionInformation;
-    session.User = new User(session.User);
-    this._activeSessionSubject.next(session);
-
-    // TODO: If AccessCode is expired, run in background refresh flow using the RefreshCode
-  }
-
-  async ResetPassword(email: String){
-    const data = await this._requestService.PasswordResetRequest(email);
+    const data = await this._requestService.updatePasswordRequest(email, token, newPassword);
     if (!data.success) {
       throw data.errorMessage;
     }
   }
 
-  LogOut() {
+  async resetPassword(email: String) {
+    const data = await this._requestService.passwordResetRequest(email);
+    if (!data.success) {
+      throw data.errorMessage;
+    }
+  }
+
+  logOut() {
     this._activeSessionSubject.next(undefined);
     localStorage.removeItem("session");
   }
 
-  async RegisterNewUser(email: string, password: string) {
+  async registerNewUser(email: string, password: string) {
     const data = await this._requestService.registerNewUserRequest(email, password);
-    this.SetCurrentUserFromLoginResponse(data);
+    this.setCurrentUserFromLoginResponse(data);
   }
 
-  async LogInEmailPassword(email: string, password: string) {
+  async logInEmailPassword(email: string, password: string) {
     const data = await this._requestService.logInEmailPasswordRequest(email, password);
-    this.SetCurrentUserFromLoginResponse(data);
+    this.setCurrentUserFromLoginResponse(data);
   };
 
-  SetCurrentUserFromLoginResponse(data: RequestResult) {
+  setCurrentUserFromLoginResponse(data: RequestResult) {
     if (!data.success) {
       throw data.errorMessage;
     }
@@ -67,5 +59,18 @@ export class UserStoreService {
     }
 
     localStorage.setItem("session", JSON.stringify(session));
+  }
+
+  constructor(private _requestService: ApiRequestService) {
+    const sessionSerialized = localStorage.getItem("session");
+    if (!sessionSerialized) {
+      return;
+    }
+
+    const session = JSON.parse(sessionSerialized) as ISessionInformation;
+    session.User = new User(session.User);
+    this._activeSessionSubject.next(session);
+
+    // TODO: If AccessCode is expired, run in background refresh flow using the RefreshCode
   }
 }

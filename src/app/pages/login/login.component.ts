@@ -54,7 +54,7 @@ export class LoginComponent implements OnInit {
 
   async logInEmailPassword(email: string, password: string) {
     try {
-      await this._userStore.LogInEmailPassword(email, password);
+      await this._userStore.logInEmailPassword(email, password);
       this._router.navigate(['/home'])
     } catch (error: any) {
       // Handle login error

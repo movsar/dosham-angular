@@ -14,7 +14,7 @@ export class ProfileComponent {
   ) { }
 
   onLogOutClick(): void {
-    this._userStore.LogOut();
+    this._userStore.logOut();
     this._router.navigate(['/']);
   }
 }

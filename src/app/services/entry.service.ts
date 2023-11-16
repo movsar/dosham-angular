@@ -20,6 +20,16 @@ export class EntryService {
     return entries;
   }
 
+  async getLatest(count: number) {
+    const data = await this._requestService.getLatestEntriesRequest(count);
+    if (!data.success) {
+      throw 'No data received from the GraphQL';
+    }
+
+    const entries: IEntry[] = JSON.parse(data.serializedData);
+    return entries;
+  }
+
   async getRandoms(count: number) {
     const data = await this._requestService.getRandomEntriesRequest(count);
     if (!data.success) {

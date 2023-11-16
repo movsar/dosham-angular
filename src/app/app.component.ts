@@ -3,6 +3,7 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { MatSidenav } from '@angular/material/sidenav';
 import { UserStoreService } from './services/user-store.service';
 import { ISessionInformation } from './models/session.interface';
+import { ContentStoreService } from './services/content-store.service';
 
 @Component({
   selector: 'app-root',
@@ -15,16 +16,18 @@ export class AppComponent {
   title = 'dosham';
 
   constructor(
-    private observer: BreakpointObserver,
-    public _userStore: UserStoreService
+    private _observer: BreakpointObserver,
+    private _contentStore: ContentStoreService,
+    public userStore: UserStoreService
   ) { }
 
   @ViewChild(MatSidenav)
   sidenav!: MatSidenav;
   isMobile = true;
   isCollapsed = true;
+  
   ngOnInit() {
-    this.observer.observe(['(max-width: 800px)']).subscribe((screenSize) => {
+    this._observer.observe(['(max-width: 800px)']).subscribe((screenSize) => {
       if (screenSize.matches) {
         this.isMobile = true;
       } else {
@@ -32,7 +35,7 @@ export class AppComponent {
       }
     });
 
-    this._userStore.activeSession.subscribe((session: ISessionInformation | undefined) => {
+    this.userStore.activeSession.subscribe((session: ISessionInformation | undefined) => {
       this.currentUserEmail = session?.User?.Email!;
     });
   }
@@ -54,19 +57,19 @@ export class AppComponent {
 
   searchQuery: string = '';
 
-  Search(event: any) {
+  search(event: any) {
     // Implement your search logic here
   }
 
-  LoadRandomEntries() {
-    // Implement loading random entries logic here
+  loadRandomEntries() {
+    this._contentStore.loadRandomEntries();
   }
 
-  LoadLatestEntries() {
-
+  loadLatestEntries() {
+    this._contentStore.loadLatestEntries();
   }
 
-  ToggleOnModerationFlag() {
+  toggleOnModerationFlag() {
     // Implement logic for toggling OnModeration flag
   }
 }

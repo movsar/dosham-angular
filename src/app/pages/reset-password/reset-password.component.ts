@@ -33,7 +33,7 @@ export class ResetPasswordComponent {
 
     try {
       this.errorMessages = [];
-      await this.userStore.ResetPassword(email);
+      await this.userStore.resetPassword(email);
       this.formSubmitted = true;
     } catch (error: any) {
       this.formSubmitted = false;

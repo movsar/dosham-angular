@@ -35,9 +35,9 @@ export class ContentStoreService {
       return -1;
     }
   }
-  setCurrentEntries(entries :IEntry[]){
+  setCurrentEntries(entries: IEntry[]) {
     this.currentEntries = entries.sort(this.entryComparator);
-    this.currentEntries.map(e => e.Content = e.Content.substring(0,1).toUpperCase() + e.Content.substring(1));
+    this.currentEntries.map(e => e.Content = e.Content.substring(0, 1).toUpperCase() + e.Content.substring(1));
     this.entriesSubject.next(this.currentEntries);
   }
 
@@ -49,8 +49,14 @@ export class ContentStoreService {
     }
   }
 
+  async loadLatestEntries() {
+    const latest = await this._entryService.getLatest(50);
+    this.setCurrentEntries(latest);
+  }
+
   async loadRandomEntries() {
-    this.setCurrentEntries(await this._entryService.getRandoms(50));
+    const randoms = await this._entryService.getRandoms(50);
+    this.setCurrentEntries(randoms);
   }
 
   addEntry(entry: IEntry): void {

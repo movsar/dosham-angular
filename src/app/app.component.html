@@ -22,7 +22,7 @@
         Поддержать
       </a>
 
-      <ng-container *ngIf="_userStore.CurrentUser">
+      <ng-container *ngIf="userStore.CurrentUser">
         <a mat-list-item [routerLink]="['/profile']">
           <mat-icon>person</mat-icon>
           Профиль
@@ -48,19 +48,19 @@
     </mat-nav-list>
 
     <div class="actions-container">
-      <button mat-button color="primary" (click)="LoadRandomEntries()">
+      <button mat-button color="primary" (click)="loadRandomEntries()">
         {{ "Randoms" }}
       </button>
 
-      <button mat-button color="primary" (click)="LoadLatestEntries()">
+      <button mat-button color="primary" (click)="loadLatestEntries()">
         {{ 'Latest' }}
       </button>
-      
+
       <!-- <button mat-button color="primary" (click)="toggleOnModerationFlag()">
             {{ 'On moderation' }}
         </button>-->
 
-      <a *ngIf="_userStore.CurrentUser?.Id" mat-button color="accent" routerLink="/entry/edit">
+      <a *ngIf="userStore.CurrentUser?.Id" mat-button color="accent" routerLink="/entry/edit">
         {{ 'Add / Ask' }}
       </a>
     </div>

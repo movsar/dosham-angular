@@ -15,7 +15,33 @@ export class ApiRequestService {
 
   constructor(private apollo: Apollo) { }
 
-  public async PasswordResetRequest(email: String): Promise<RequestResult> {
+  public async updatePasswordRequest(email: string, token: string, newPassword: string): Promise<RequestResult> {
+    const method = 'updatePassword';
+    const FIND_ENTRIES_QUERY = gql`
+      mutation ${method}($email: String!, $token: String!, $newPassword: String!) {
+        ${method}(email: $email, token: $token, newPassword: $newPassword) {
+          success
+          errorMessage
+          serializedData
+        }
+      }
+    `;
+
+    const variables = {
+      email: email,
+      token: token,
+      newPassword: newPassword
+    };
+
+    const response = await this.makeMutationRequest(
+      method,
+      FIND_ENTRIES_QUERY,
+      variables
+    );
+    return response;
+  }
+
+  public async passwordResetRequest(email: String): Promise<RequestResult> {
     const method = 'passwordReset';
     const FIND_ENTRIES_QUERY = gql`
       mutation ${method}($email: String!) {
@@ -168,6 +194,26 @@ export class ApiRequestService {
       FIND_ENTRIES_QUERY,
       { inputText },
       this.FETCH_POLICY_CACHE_FIRST
+    );
+  }
+
+  public async getLatestEntriesRequest(count: number): Promise<RequestResult> {
+    const method = 'latestEntries';
+    const GET_RANDOMS_QUERY = gql`
+      query ${method}($count: Int!) {
+        ${method}(count: $count) {
+          success
+          errorMessage
+          serializedData
+        }
+      }
+    `;
+
+    return await this.makeQueryRequest(
+      method,
+      GET_RANDOMS_QUERY,
+      { count },
+      this.FETCH_POLICY_NETWORK_ONLY
     );
   }
 

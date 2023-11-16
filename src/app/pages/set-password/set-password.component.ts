@@ -27,30 +27,31 @@ export class SetPasswordComponent {
   }
 
   async validateAndSubmitAsync() {
-    if (this.passwordForm.valid) {
-      let email: string = "";
-      let token: string = "";
+    if (!this.passwordForm.valid) {
+      return;
+    }
 
-      // Extracting query parameters synchronously
-      this.activatedRoute.queryParams.subscribe(params => {
-        email = params['email'];
-        token = params['token'];
-      });
+    let email: string = "";
+    let token: string = "";
 
-      // Check if email and token are available
-      if (!email || !token) {
-        this.router.navigateByUrl('/');
-        return;
-      }
+    // Extracting query parameters synchronously
+    this.activatedRoute.queryParams.subscribe(params => {
+      email = params['email'];
+      token = params['token'];
+    });
 
-      const password = this.passwordForm.get('password')?.value;
+    // Check if email and token are available
+    if (!email || !token) {
+      this.router.navigateByUrl('/');
+      return;
+    }
 
-      // Perform the asynchronous operation
-      try {
-        await this.userStore.updatePassword(email, token, password);
-      } catch (error) {
-        console.error('Error updating password:', error);
-      }
+    const password = this.passwordForm.get('password')?.value;
+
+    try {
+      await this.userStore.updatePassword(email, token, password);
+    } catch (error) {
+      console.error('Error updating password:', error);
     }
   }
 }
