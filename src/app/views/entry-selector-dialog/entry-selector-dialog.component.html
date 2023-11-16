@@ -1,0 +1,13 @@
+<div>
+    <p>{{ 'Select_the_parent_word' }}</p>
+
+    <div style="max-height: 400px; overflow: auto;">
+        <!-- WordSelectorComponent needs to be implemented -->
+        <app-word-selector (entrySelected)="handleEntrySelected($event)"></app-word-selector>
+    </div>
+
+    <div class="float-end mt-2">
+        <button (click)="onCancel()" class="btn btn-secondary">{{ 'Cancel' }}</button>
+        <button (click)="ok()" class="btn btn-primary">{{ 'Ok' }}</button>
+    </div>
+</div>

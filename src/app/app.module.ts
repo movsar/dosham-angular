@@ -40,6 +40,9 @@ import { TranslationEditComponent } from './views/translation-edit/translation-e
 import { WordDetailsEditComponent } from './views/word-details-edit/word-details-edit.component';
 import { WordSelectorComponent } from './views/word-selector/word-selector.component';
 import { EntryEditComponent } from './pages/entry-edit/entry-edit.component';
+import { ConfirmationDialogComponent } from './views/confirmation-dialog/confirmation-dialog.component';
+import { WordSelectorDialogComponent } from './views/word-selector-dialog/word-selector-dialog.component';
+import { EntrySelectorDialogComponent } from './views/entry-selector-dialog/entry-selector-dialog.component';
 
 @NgModule({
   declarations: [
@@ -66,6 +69,9 @@ import { EntryEditComponent } from './pages/entry-edit/entry-edit.component';
     WordDetailsEditComponent,
     WordSelectorComponent,
     EntryEditComponent,
+    ConfirmationDialogComponent,
+    WordSelectorDialogComponent,
+    EntrySelectorDialogComponent,
   ],
   imports: [
     BrowserModule,

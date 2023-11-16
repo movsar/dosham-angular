@@ -1,1 +1,33 @@
-<p>translation-edit works!</p>
+<!-- Make sure Angular Material modules are imported in your module -->
+<div *ngIf="translation" class="row">
+    <div class="col-2">
+        <mat-form-field>
+            <mat-select [(value)]="translation!.LanguageCode" [disabled]="!canEditTranslation">
+                <mat-option *ngFor="let language of languages" [value]="language.Code">{{ language.name }}</mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+
+    <div class="col-10">
+        <mat-form-field>
+            <input matInput placeholder="Enter translation text" [(ngModel)]="translation.Content" [disabled]="!canEditTranslation">
+        </mat-form-field>
+    </div>
+</div>
+
+<div class="row mt-2">
+    <div class="col-10">
+        <mat-form-field>
+            <input matInput placeholder="Enter translation notes" [(ngModel)]="translation.Notes" [disabled]="!canEditTranslation">
+        </mat-form-field>
+    </div>
+
+    <div class="col-2 mt-2">
+        <!-- Replace TranslationActionButtonsView with an Angular component -->
+        <app-translation-action-buttons [translation]="translation" 
+                                        (edit)="editHandler()" 
+                                        (promote)="promoteHandler()" 
+                                        (remove)="removeHandler()">
+        </app-translation-action-buttons>
+    </div>
+</div>

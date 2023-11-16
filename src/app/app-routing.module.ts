@@ -9,6 +9,7 @@ import { RegistrationComponent } from './pages/registration/registration.compone
 import { ResetPasswordComponent } from './pages/reset-password/reset-password.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { SetPasswordComponent } from './pages/set-password/set-password.component';
+import { EntryEditComponent } from './pages/entry-edit/entry-edit.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -21,6 +22,7 @@ const routes: Routes = [
   { path: 'registration', component: RegistrationComponent },
   { path: 'password-reset', component: ResetPasswordComponent },
   { path: 'set-new-password', component: SetPasswordComponent },
+  { path: 'entry/edit', component: EntryEditComponent },
 ];
 
 @NgModule({
