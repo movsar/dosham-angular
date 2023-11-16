@@ -15,7 +15,9 @@ export class UserStoreService {
   public get CurrentUser(): User | undefined {
     return this._activeSessionSubject.getValue()?.User;
   }
-
+  async updatePassword(email: string, token: string, newPassword: string) {
+    // Implement the logic to update the password
+  }
   constructor(private _requestService: ApiRequestService) {
     const sessionSerialized = localStorage.getItem("session");
     if (!sessionSerialized) {

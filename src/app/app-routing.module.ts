@@ -8,6 +8,7 @@ import { LoginComponent } from './pages/login/login.component';
 import { RegistrationComponent } from './pages/registration/registration.component';
 import { ResetPasswordComponent } from './pages/reset-password/reset-password.component';
 import { ProfileComponent } from './pages/profile/profile.component';
+import { SetPasswordComponent } from './pages/set-password/set-password.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -19,6 +20,7 @@ const routes: Routes = [
   { path: 'profile', component: ProfileComponent },
   { path: 'registration', component: RegistrationComponent },
   { path: 'password-reset', component: ResetPasswordComponent },
+  { path: 'set-password', component: SetPasswordComponent },
 ];
 
 @NgModule({
