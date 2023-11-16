@@ -62,6 +62,10 @@ export class LoginComponent implements OnInit {
     }
   }
 
+  async onResetClick() {    
+    this._router.navigate(['/password-reset']);
+  }
+
   onRegisterClick():void {
     this._router.navigate(['/registration'])
   }

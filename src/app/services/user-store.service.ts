@@ -29,6 +29,13 @@ export class UserStoreService {
     // TODO: If AccessCode is expired, run in background refresh flow using the RefreshCode
   }
 
+  async ResetPassword(email: String){
+    const data = await this._requestService.PasswordResetRequest(email);
+    if (!data.success) {
+      throw data.errorMessage;
+    }
+  }
+
   LogOut() {
     this._activeSessionSubject.next(undefined);
     localStorage.removeItem("session");

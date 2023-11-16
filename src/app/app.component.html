@@ -31,13 +31,13 @@
           {{currentUserEmail}}
         </div>
       </ng-container>
-      <!-- 
+
       <ng-container *ngIf="!currentUserEmail">
         <a mat-list-item [routerLink]="['/login']">
           <mat-icon>login</mat-icon>
           Log in
         </a>
-      </ng-container> -->
+      </ng-container>
 
       <hr class="separator" />
 
@@ -48,22 +48,21 @@
     </mat-nav-list>
 
     <div class="actions-container">
-      <!-- <button mat-button color="primary" (click)="LoadRandomEntries()">
+      <button mat-button color="primary" (click)="LoadRandomEntries()">
         {{ "Randoms" }}
       </button>
 
       <button mat-button color="primary" (click)="LoadLatestEntries()">
         {{ 'Latest' }}
-      </button> -->
+      </button>
+      
       <!-- <button mat-button color="primary" (click)="toggleOnModerationFlag()">
             {{ 'On moderation' }}
-        </button>
-    
-        
-    
-        <a *ngIf="isLoggedIn" mat-button color="accent" routerLink="/entry/edit">
-            {{ 'AddAsk' }}
-        </a> -->
+        </button>-->
+
+      <a *ngIf="_userStore.CurrentUser?.Id" mat-button color="accent" routerLink="/entry/edit">
+        {{ 'Add / Ask' }}
+      </a>
     </div>
 
 

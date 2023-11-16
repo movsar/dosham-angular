@@ -15,6 +15,30 @@ export class ApiRequestService {
 
   constructor(private apollo: Apollo) { }
 
+  public async PasswordResetRequest(email: String): Promise<RequestResult> {
+    const method = 'passwordReset';
+    const FIND_ENTRIES_QUERY = gql`
+      mutation ${method}($email: String!) {
+        ${method}(email: $email) {
+          success
+          errorMessage
+          serializedData
+        }
+      }
+    `;
+
+    const variables = {
+      email: email,
+    };
+
+    const response = await this.makeMutationRequest(
+      method,
+      FIND_ENTRIES_QUERY,
+      variables
+    );
+    return response;
+  }
+
   public async registerNewUserRequest(email: string, password: string): Promise<RequestResult> {
     const method = 'registerUser';
     const FIND_ENTRIES_QUERY = gql`
