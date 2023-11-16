@@ -36,6 +36,10 @@ import { FormErrorsComponent } from './views/form-errors/form-errors.component';
 import { EmailSentComponent } from './views/email-sent/email-sent.component';
 import { UserStoreService } from './services/user-store.service';
 import { ContentStoreService } from './services/content-store.service';
+import { TranslationEditComponent } from './views/translation-edit/translation-edit.component';
+import { WordDetailsEditComponent } from './views/word-details-edit/word-details-edit.component';
+import { WordSelectorComponent } from './views/word-selector/word-selector.component';
+import { EntryEditComponent } from './pages/entry-edit/entry-edit.component';
 
 @NgModule({
   declarations: [
@@ -58,6 +62,10 @@ import { ContentStoreService } from './services/content-store.service';
     RegistrationComponent,
     FormErrorsComponent,
     EmailSentComponent,
+    TranslationEditComponent,
+    WordDetailsEditComponent,
+    WordSelectorComponent,
+    EntryEditComponent,
   ],
   imports: [
     BrowserModule,

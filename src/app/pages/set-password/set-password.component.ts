@@ -50,6 +50,7 @@ export class SetPasswordComponent {
 
     try {
       await this.userStore.updatePassword(email, token, password);
+      this.router.navigate(['/']);
     } catch (error) {
       console.error('Error updating password:', error);
     }
