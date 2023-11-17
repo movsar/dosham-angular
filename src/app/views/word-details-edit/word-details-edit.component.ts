@@ -1,7 +1,7 @@
 import { Component, Input, Output } from '@angular/core';
 import { VerbTense } from 'src/app/enums/word-details.enum';
 import { WordType } from 'src/app/enums/word-type.enum';
-import { IEntry } from 'src/app/models/entry.model';
+import { Entry } from 'src/app/models/entry.model';
 
 @Component({
   selector: 'app-word-details-edit',
@@ -9,10 +9,10 @@ import { IEntry } from 'src/app/models/entry.model';
   styleUrls: ['./word-details-edit.component.scss']
 })
 export class WordDetailsEditComponent {
-  @Input() entry!: IEntry | undefined;
+  @Input() entry!: Entry | undefined;
   @Input() disabled: boolean = false;
 
-  parentEntry: IEntry | undefined;
+  parentEntry: Entry | undefined;
   wordTypes = WordType;
   verbTenses = VerbTense;
 

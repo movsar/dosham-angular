@@ -1,5 +1,5 @@
 import { Component, Input, EventEmitter, Output } from '@angular/core';
-import { IEntry } from 'src/app/models/entry.model';
+import { Entry } from 'src/app/models/entry.model';
 import { UserStoreService } from 'src/app/services/user-store.service';
 
 @Component({
@@ -8,7 +8,7 @@ import { UserStoreService } from 'src/app/services/user-store.service';
   styleUrls: ['./entry-action-buttons.component.scss']
 })
 export class EntryActionButtonsComponent {
-  @Input() entry?: IEntry;
+  @Input() entry?: Entry;
   @Output() promote = new EventEmitter<void>();
   @Output() remove = new EventEmitter<void>();
   // Add any other outputs you need for your actions

@@ -1,23 +1,47 @@
 import { ISound } from "./sound.model";
 import { ISource } from "./source.model";
-import { ITranslation } from "./translation.model";
+import { Translation } from "./translation.model";
 
-export interface IEntry {
-  EntryId: string;
-  UserId: string;
-  Source: ISource;
-  Sounds: ISound[];
-  SourceId: string;
-  ParentEntryId?: string;
-  Rate: number;
-  Content: string;
-  Type: number;
-  Subtype: number;
-  Details: {};
-  SubEntries: IEntry[];
-  CreatedAt: string;
-  UpdatedAt: string;
-  Translations: ITranslation[];
+export class Entry {
+  private _content: string = '';
+  private _type: number = 1;
+
+  public EntryId: string = crypto.randomUUID();
+  public SourceId!: string;
+
+  public UserId?: string;
+  public ParentEntryId?: string;
+  public Rate: number = 0;
+  public EntrySubtype: number = 0;
+  public CreatedAt!: Date;
+  public UpdatedAt!: Date;
+  public Details?: string;
+
+  SubEntries: Entry[] = [];
+  Translations: Translation[] = [];
+
+  public get Content(): string {
+    return this._content;
+  }
+
+  public set Content(value) {
+    const trimmedValue = value.trim();
+    if (trimmedValue.includes(' ') || trimmedValue.includes('.') || trimmedValue.includes(',')) {
+      this._type = trimmedValue.length > 255 ? EntryType.Text : EntryType.Phrase;
+    } else {
+      this._type = EntryType.Word;
+    }
+    this._content = value;
+  }
+
+  public get Type(): number {
+    return this._type;
+  }
+
+  public set Type(value: number) {
+    this._type = value;
+  }
+
 }
 
 export enum EntryType {

@@ -1,6 +1,6 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { WordType } from 'src/app/enums/word-type.enum';
-import { IEntry } from 'src/app/models/entry.model';
+import { Entry } from 'src/app/models/entry.model';
 import { UserStoreService } from 'src/app/services/user-store.service';
 
 @Component({
@@ -9,7 +9,7 @@ import { UserStoreService } from 'src/app/services/user-store.service';
   styleUrls: ['./entry.component.scss'],
 })
 export class EntryComponent {
-  @Input() Entry!: IEntry;
+  @Input() Entry!: Entry;
   @Output() pronunciationRequested = new EventEmitter<void>();
 
   constructor(public UserStore: UserStoreService){}

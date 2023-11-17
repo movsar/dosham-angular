@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { EntryType, IEntry } from 'src/app/models/entry.model';
+import { EntryType, Entry } from 'src/app/models/entry.model';
 import { IFiltrationFlags } from 'src/app/models/filtration-flags.model';
 import { ContentStoreService } from 'src/app/services/content-store.service';
 
@@ -10,7 +10,7 @@ import { ContentStoreService } from 'src/app/services/content-store.service';
 })
 export class IndexComponent implements OnInit {
   public _letters = ['Ӏ', 'А', 'Аь', 'Б', 'В', 'Г', 'ГӀ', 'Д', 'Е', 'Ё', 'Ж', 'З', 'И', 'Й', 'К', 'Кх', 'Къ', 'КӀ', 'Л', 'М', 'Н', 'О', 'Оь', 'П', 'ПӀ', 'Р', 'С', 'Т', 'ТӀ', 'У', 'Уь', 'Ф', 'Х', 'Хь', 'ХӀ', 'Ц', 'ЦӀ', 'Ч', 'ЧӀ', 'Ш', 'Э', 'Ю', 'Юь', 'Я', 'Яь'];
-  _entries?: IEntry[];
+  _entries?: Entry[];
   _currentPage = 1;
   _totalPages: number = 0;
   _currentLetter: string = this._letters[0];

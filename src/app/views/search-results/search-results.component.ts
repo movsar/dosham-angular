@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { IEntry, EntryType } from 'src/app/models/entry.model';
+import { Entry, EntryType } from 'src/app/models/entry.model';
 import { ContentStoreService } from 'src/app/services/content-store.service';
 
 @Component({
@@ -13,9 +13,9 @@ export class SearchResultsComponent implements OnInit, OnDestroy {
   EntryType = EntryType;
 
   // Search results
-  entries: IEntry[] = [];
+  entries: Entry[] = [];
 
-  // A flag to check whether the fetch has been completed 
+  // A flag to check whether the fetch has been completed
   inProgress: boolean = true;
 
   private subscription: Subscription = new Subscription();

@@ -1,7 +1,7 @@
 import { UserRole } from "../enums/user-role.enum";
 import { UserStatus } from "../enums/user-status.enum";
 import { UserType } from "../enums/user-type.enum";
-import { IEntry } from "./entry.model";
+import { Entry } from "./entry.model";
 
 export class User {
     Id: string = "";
@@ -79,7 +79,7 @@ export class User {
 
         return false;
     }
-    public CanAddSound(entry: IEntry): boolean {
+    public CanAddSound(entry: Entry): boolean {
         if (this.Status !== UserStatus.Active) {
             return false;
         }
@@ -92,7 +92,7 @@ export class User {
         return true;
     }
 
-    public CanAddTranslation(entry: IEntry, languageCode: string): boolean {
+    public CanAddTranslation(entry: Entry, languageCode: string): boolean {
         if (this.Status != UserStatus.Active) {
             return false;
         }

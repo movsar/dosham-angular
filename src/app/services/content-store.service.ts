@@ -1,41 +1,41 @@
 import { Injectable } from '@angular/core';
-import { IEntry } from '../models/entry.model';
+import { Entry } from '../models/entry.model';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { ITranslation } from '../models/translation.model';
+import { Translation } from '../models/translation.model';
 import { EntryService } from './entry.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ContentStoreService {
-  private entriesSubject: BehaviorSubject<IEntry[]> = new BehaviorSubject<IEntry[]>([]);
-  public entries$: Observable<IEntry[]> = this.entriesSubject.asObservable();
+  private entriesSubject: BehaviorSubject<Entry[]> = new BehaviorSubject<Entry[]>([]);
+  public entries$: Observable<Entry[]> = this.entriesSubject.asObservable();
 
-  public currentEntries: IEntry[] = [];
+  public currentEntries: Entry[] = [];
 
   constructor(private _entryService: EntryService) { }
 
   entryService = this._entryService;
 
-  promoteEntry(entry: IEntry) {
+  promoteEntry(entry: Entry) {
 
   }
 
-  removeEntry(entry: IEntry) {
+  removeEntry(entry: Entry) {
 
   }
 
-  promoteTranslation(translation: ITranslation) {
+  promoteTranslation(translation: Translation) {
 
   }
-  entryComparator(e1: IEntry, e2: IEntry) {
+  entryComparator(e1: Entry, e2: Entry) {
     if (e1.Content > e2.Content) {
       return 1;
     } else {
       return -1;
     }
   }
-  setCurrentEntries(entries: IEntry[]) {
+  setCurrentEntries(entries: Entry[]) {
     this.currentEntries = entries.sort(this.entryComparator);
     this.currentEntries.map(e => e.Content = e.Content.substring(0, 1).toUpperCase() + e.Content.substring(1));
     this.entriesSubject.next(this.currentEntries);
@@ -59,7 +59,7 @@ export class ContentStoreService {
     this.setCurrentEntries(randoms);
   }
 
-  addEntry(entry: IEntry): void {
+  addEntry(entry: Entry): void {
     const currentValue = this.entriesSubject.value;
     const updatedValue = [...currentValue, entry];
     this.setCurrentEntries(updatedValue);

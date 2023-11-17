@@ -3,7 +3,7 @@
     <div class="col-2">
         <mat-form-field>
             <mat-select [(value)]="translation!.LanguageCode" [disabled]="!canEditTranslation">
-                <mat-option *ngFor="let language of languages" [value]="language.Code">{{ language.name }}</mat-option>
+                <mat-option *ngFor="let language in languages" [value]="language.Code">{{ language.name }}</mat-option>
             </mat-select>
         </mat-form-field>
     </div>

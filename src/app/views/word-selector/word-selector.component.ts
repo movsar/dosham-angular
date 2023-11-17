@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IEntry } from 'src/app/models/entry.model';
+import { Entry } from 'src/app/models/entry.model';
 
 @Component({
   selector: 'app-word-selector',
@@ -8,14 +8,14 @@ import { IEntry } from 'src/app/models/entry.model';
 })
 export class WordSelectorComponent {
   searchQuery: string = '';
-  entries: IEntry[] | null = null; // Define Entry model according to your data structure
+  entries: Entry[] | null = null; // Define Entry model according to your data structure
   selectedEntryId: string | null = null;
 
   search(e: Event): void {
     // Implement your search logic here
   }
 
-  selectEntry(entry: IEntry): void {
+  selectEntry(entry: Entry): void {
     this.selectedEntryId = entry.EntryId;
   }
 
@@ -24,7 +24,7 @@ export class WordSelectorComponent {
    internal string? SearchQuery { get; set; }
    internal ElementReference SearchInputReference { get; set; }
    internal string? SelectedEntryId { get; set; }
-  
+
    [Parameter]
    public EventCallback<EntryModel> OnEntrySelected { get; set; }
    public async Task SelectEntry(EntryModel entry)
@@ -39,7 +39,7 @@ export class WordSelectorComponent {
        {
            return;
        }
-  
+
        Entries = (await ContentStore.EntryService.FindAsync(inputText)).ToList();
    }
    protected override async Task OnAfterRenderAsync(bool firstRender)
@@ -48,7 +48,7 @@ export class WordSelectorComponent {
        {
            await SearchInputReference.FocusAsync();
        }
-  
+
        await base.OnAfterRenderAsync(firstRender);
    }
    */

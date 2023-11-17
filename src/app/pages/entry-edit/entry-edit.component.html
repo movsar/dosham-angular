@@ -1,53 +1,31 @@
-<div data-id="form_container">
-    <!-- Display entry type (assuming entryDto.type is available) -->
-    Type:&nbsp;
-    <span *ngSwitch="entryDto?.Type">
-        <span *ngSwitchCase="'word'">Word</span>
-        <span *ngSwitchCase="'phrase'">Phrase</span>
-        <span *ngSwitchCase="'text'">Text</span>
-    </span>
+<div class="card-container">
+  <mat-card>
+    <mat-card-content>
+      <div data-id="form_container">
+        <mat-form-field appearance="fill">
+          <mat-label>Type</mat-label>
+          <mat-select name="entryTypeSelect" class="full-width">
+            <mat-option *ngFor="let entryType of entryTypes" [value]="entryType.value">{{entryType.name}}</mat-option>
+          </mat-select>
+        </mat-form-field>
 
-    <div class="row">
-        <div class="col-10">
-            <div class="mt-2">
-                <textarea class="form-control" [disabled]="!canEditEntry" placeholder="Enter Word"
-                    [(ngModel)]="entryDto!.Content"></textarea>
-            </div>
+        <mat-form-field appearance="fill" class="full-width">
+          <textarea matInput [disabled]="!canEditEntry" placeholder="Enter Word" [(ngModel)]="content"></textarea>
+        </mat-form-field>
+
+        <button mat-raised-button color="accent" id="recordButton" (click)="toggleRecording()"
+          [disabled]="!canAddPronunciation()">+ Pronunciation</button>
+
+          <button mat-raised-button color="primary" type="button" (click)="newTranslation()">+ Translation</button>
+
+
+        <!-- Rest of your form components -->
+
+        <div class="button-container mt-3 mb-3">
+          <button mat-stroked-button color="warn" (click)="cancel()">Cancel</button>
+          <button mat-raised-button color="primary" (click)="save()">Save</button>
         </div>
-
-        <div class="col-2">
-            <button class="form-control col-12 btn btn-success mt-2" type="button" (click)="newTranslation()">+
-                Translation</button>
-            <button class="form-control col-12 btn btn-warning mt-2" id="recordButton" (click)="toggleRecording()"
-                [disabled]="!canAddPronunciation()">+ Pronunciation</button>
-        </div>
-    </div>
-
-    <!-- Conditional rendering based on entry type -->
-    <div *ngSwitch="entryDto?.Type">
-        <app-word-details-edit *ngSwitchCase="'word'" [entry]="entryDto"
-            [disabled]="!canEditEntry"></app-word-details-edit>
-
-        <h1 *ngSwitchCase="'text'">Text</h1>
-    </div>
-
-    <div class="mt-2">
-        <div id="recordings-list" class="mt-2">
-            <!-- List of recordings -->
-        </div>
-    </div>
-
-    <div class="mt-2">
-        <div class="mb-4" *ngFor="let translation of entryDto?.Translations">
-            <app-translation-edit [translation]="translation" (promote)="promoteTranslation(translation)"
-                (remove)="deleteTranslation(translation.TranslationId)"></app-translation-edit>
-        </div>
-    </div>
-
-    <app-form-errors [errorMessages]="errorMessages"></app-form-errors>
-
-    <div class="mt-3 mb-3 float-end">
-        <button class="btn btn-light" (click)="cancel()">Cancel</button>
-        <button class="btn btn-primary" (click)="save()">Save</button>
-    </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
 </div>

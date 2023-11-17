@@ -1,5 +1,5 @@
 import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
-import { ITranslation } from 'src/app/models/translation.model';
+import { Translation } from 'src/app/models/translation.model';
 import { UserStoreService } from 'src/app/services/user-store.service';
 
 @Component({
@@ -8,10 +8,10 @@ import { UserStoreService } from 'src/app/services/user-store.service';
   styleUrls: ['./translation-edit.component.scss']
 })
 export class TranslationEditComponent {
-  @Input() translation!: ITranslation
+  @Input() translation!: Translation
 
   @Output() remove = new EventEmitter<string>();
-  @Output() promote = new EventEmitter<ITranslation>();
+  @Output() promote = new EventEmitter<Translation>();
   canEditTranslation: boolean = true;
   canRemoveTranslation: boolean = false;
 

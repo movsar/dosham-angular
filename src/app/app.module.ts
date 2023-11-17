@@ -9,6 +9,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatSelectModule } from '@angular/material/select';
 import { MatButtonModule } from '@angular/material/button';
 import { MatListModule } from '@angular/material/list';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -85,6 +86,7 @@ import { EntrySelectorDialogComponent } from './views/entry-selector-dialog/entr
     MatToolbarModule,
     MatSidenavModule,
     MatCardModule,
+    MatSelectModule,
     FormsModule,
     GraphQLModule,
     HttpClientModule,

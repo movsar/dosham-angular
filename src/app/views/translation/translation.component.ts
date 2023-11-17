@@ -1,5 +1,5 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { ITranslation } from 'src/app/models/translation.model';
+import { Translation } from 'src/app/models/translation.model';
 import { ContentStoreService } from 'src/app/services/content-store.service';
 
 @Component({
@@ -8,7 +8,7 @@ import { ContentStoreService } from 'src/app/services/content-store.service';
   styleUrls: ['./translation.component.scss'],
 })
 export class TranslationComponent {
-  @Input() _translation?: ITranslation;
+  @Input() _translation?: Translation;
   @Output() promote = new EventEmitter<void>();
 
   constructor(private _contentStore: ContentStoreService) {}

@@ -1,4 +1,4 @@
-export interface ITranslationFilters {
+export interface TranslationFilters {
   includeOnModeration?: boolean;
   languageCodes?: string[];
 }

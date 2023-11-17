@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { ITranslation } from 'src/app/models/translation.model';
+import { Translation } from 'src/app/models/translation.model';
 import { UserStoreService } from 'src/app/services/user-store.service';
 
 @Component({
@@ -8,11 +8,11 @@ import { UserStoreService } from 'src/app/services/user-store.service';
   styleUrls: ['./translation-action-buttons.component.scss'],
 })
 export class TranslationActionButtonsComponent {
-  @Input() Translation!: ITranslation; // Adjust the type as needed
-  @Input() RemoveHandler!: Function;
-  @Input() EditHandler!: Function;
-  @Input() PromoteHandler!: Function;
+  @Input() translation!: Translation; // Adjust the type as needed
+  @Input() removeHandler!: Function;
+  @Input() editHandler!: Function;
+  @Input() promoteHandler!: Function;
 
-  constructor(public UserStore: UserStoreService) { }
+  constructor(public userStore: UserStoreService) { }
 
 }

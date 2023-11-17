@@ -1,27 +1,27 @@
-<div>
+<mat-card>
+  <mat-card-content>
     <div class="row">
-        <mat-form-field class="mb-3 mt-3">
-            <mat-label>Search</mat-label>
-            <input matInput [(ngModel)]="searchQuery" (input)="search($event)" placeholder="Start typing">
-        </mat-form-field>
+      <mat-form-field class="mb-3 mt-3">
+        <mat-label>Search</mat-label>
+        <input matInput [(ngModel)]="searchQuery" (input)="search($event)" placeholder="Start typing">
+      </mat-form-field>
     </div>
 
     <div class="row">
-        <div *ngIf="entries" class="chldr_search_results mt-2">
-            <div *ngFor="let entry of entries" [ngClass]="{'chldr_selected_entry': entry.EntryId == selectedEntryId, 'chldr_selectable_entry': entry.EntryId != selectedEntryId}" (click)="selectEntry(entry)">
-                <mat-card>
-                    <mat-card-title>{{entry.Content}}</mat-card-title>
-                    <mat-card-content>
-                        <div *ngIf="entry.Source?.Name">
+      <div *ngIf="entries" class="chldr_search_results mt-2">
+        <div *ngFor="let entry of entries"
+          [ngClass]="{'chldr_selected_entry': entry.EntryId == selectedEntryId, 'chldr_selectable_entry': entry.EntryId != selectedEntryId}"
+          (click)="selectEntry(entry)">
+          <!-- <mat-card-title>{{entry.Content}}</mat-card-title> -->
+          <!-- <div *ngIf="entry.Source?.Name">
                             Source: {{entry.Source?.Name}}
-                        </div>
-                        <div class="chldr_entry_translations mt-2" *ngFor="let translation of entry.Translations">
-                            <span class="chldr_translation_language-code">{{translation?.LanguageCode}}</span>
-                            <span class="chldr_translation_content">{{translation?.Content}}</span>
-                        </div>
-                    </mat-card-content>
-                </mat-card>
-            </div>
+                        </div> -->
+          <div class="chldr_entry_translations mt-2" *ngFor="let translation of entry.Translations">
+            <span class="chldr_translation_language-code">{{translation?.LanguageCode}}</span>
+            <span class="chldr_translation_content">{{translation?.Content}}</span>
+          </div>
         </div>
+      </div>
     </div>
-</div>
+  </mat-card-content>
+</mat-card>

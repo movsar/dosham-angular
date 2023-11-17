@@ -1,6 +1,6 @@
 import { EntryType } from './entry.model';
 
-export interface IEntryFilters {
+export interface EntryFilters {
   startsWith?: string;
   includeOnModeration?: boolean;
   entryTypes?: EntryType[];
