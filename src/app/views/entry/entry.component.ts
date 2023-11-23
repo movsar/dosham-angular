@@ -44,7 +44,7 @@ export class EntryComponent {
   }
 
   public get Subheader(): string {
-    if (!this.Entry?.Source?.Name) {
+    if (!this.Entry.Source.Name) {
       // console.warn(`Entry without a source name ${this.entry?.Content} : ${this.entry?.EntryId}`);
       return '';
     }

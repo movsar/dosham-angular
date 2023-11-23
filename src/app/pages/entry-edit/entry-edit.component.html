@@ -4,7 +4,7 @@
       <div data-id="form_container">
         <mat-form-field appearance="fill">
           <mat-label>Type</mat-label>
-          <mat-select name="entryTypeSelect" class="full-width">
+          <mat-select name="entryTypeSelect" class="full-width" [(ngModel)]="type">
             <mat-option *ngFor="let entryType of entryTypes" [value]="entryType.value">{{entryType.name}}</mat-option>
           </mat-select>
         </mat-form-field>
@@ -16,7 +16,7 @@
         <button mat-raised-button color="accent" id="recordButton" (click)="toggleRecording()"
           [disabled]="!canAddPronunciation()">+ Pronunciation</button>
 
-          <button mat-raised-button color="primary" type="button" (click)="newTranslation()">+ Translation</button>
+        <button mat-raised-button color="primary" type="button" (click)="newTranslation()">+ Translation</button>
 
 
         <!-- Rest of your form components -->

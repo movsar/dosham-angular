@@ -1,5 +1,5 @@
 <mat-form-field class="full-width" appearance="fill">
-  <mat-label>{{ "Start typing" }}</mat-label>
+  <mat-label>{{ "Начните печатать ..." }}</mat-label>
   <input matInput [(ngModel)]="searchQuery" (input)="search($event)" autofocus />
   <mat-icon matPrefix>search</mat-icon>
   <mat-icon matSuffix *ngIf="searchQuery" (click)="searchQuery = ''">close</mat-icon>

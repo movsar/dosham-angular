@@ -7,17 +7,19 @@ export class Entry {
   private _type: number = 1;
 
   public EntryId: string = crypto.randomUUID();
+  public Source: any;
   public SourceId!: string;
 
-  public UserId?: string;
+  public UserId: string = "";
   public ParentEntryId?: string;
   public Rate: number = 0;
-  public EntrySubtype: number = 0;
+  public Subtype: number = 0;
   public CreatedAt!: Date;
   public UpdatedAt!: Date;
   public Details?: string;
 
   SubEntries: Entry[] = [];
+  Sounds: ISound[] = [];
   Translations: Translation[] = [];
 
   public get Content(): string {

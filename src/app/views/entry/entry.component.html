@@ -17,7 +17,7 @@
       [
       <span *ngFor="let subEntry of Entry.SubEntries">
         {{ subEntry.Content }}
-        <a *ngIf="UserStore.CurrentUser && UserStore.CurrentUser!.CanEdit(subEntry.Rate, subEntry.UserId)"
+        <a *ngIf="UserStore.CurrentUser && UserStore.CurrentUser!.CanEdit(subEntry.Rate, subEntry.UserId!)"
           [routerLink]="['/entry/edit', subEntry.EntryId]">
           <mat-icon>edit</mat-icon>
         </a>

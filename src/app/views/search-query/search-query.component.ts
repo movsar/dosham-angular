@@ -34,7 +34,7 @@ export class SearchQueryComponent implements OnInit {
 
   async search(event: Event) {
     const inputText = (event.target as HTMLInputElement).value;
-    this.subject.next(inputText);
+    this.subject.next(inputText.trim());
   }
 
   async loadRandomEntries() {
