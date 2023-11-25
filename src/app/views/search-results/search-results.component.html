@@ -1,4 +1,4 @@
-<div *ngIf="entries && entries.length > 0;" class="chldr_entries">
+<div *ngIf="entries && entries.length > 0;" class="chldr_entries" appGestures>
   <ng-container *ngFor="let entry of entries">
     <app-entry [Entry]="entry" class="chldr_entry"></app-entry>
   </ng-container>

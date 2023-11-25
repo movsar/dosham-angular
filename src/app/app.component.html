@@ -1,9 +1,3 @@
-<button *ngIf="isCollapsed" class="toggle-sidebar-btn" (click)="toggleMenu()">
-  <span class="arrow">▶</span>
-  <span class="arrow">▶</span>
-  <span class="arrow">▶</span>
-</button>
-
 <mat-sidenav-container autosize>
   <mat-sidenav [ngClass]="!isCollapsed ? 'expanded' : ''" [mode]="isMobile ? 'over' : 'side'"
     [opened]="isMobile ? 'false' : 'true'" (openedChange)="onSidenavToggle($event)">
@@ -67,7 +61,7 @@
 
 
   </mat-sidenav>
-  <mat-sidenav-content>
+  <mat-sidenav-content appGestures (leftToRightSwipe)="toggleMenu()">
     <router-outlet></router-outlet>
   </mat-sidenav-content>
 </mat-sidenav-container>

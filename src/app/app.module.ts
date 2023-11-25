@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule, HammerModule  } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -44,6 +44,7 @@ import { EntryEditComponent } from './pages/entry-edit/entry-edit.component';
 import { ConfirmationDialogComponent } from './views/confirmation-dialog/confirmation-dialog.component';
 import { WordSelectorDialogComponent } from './views/word-selector-dialog/word-selector-dialog.component';
 import { EntrySelectorDialogComponent } from './views/entry-selector-dialog/entry-selector-dialog.component';
+import { GesturesDirective } from './gestures.directive';
 
 @NgModule({
   declarations: [
@@ -73,6 +74,7 @@ import { EntrySelectorDialogComponent } from './views/entry-selector-dialog/entr
     ConfirmationDialogComponent,
     WordSelectorDialogComponent,
     EntrySelectorDialogComponent,
+    GesturesDirective,
   ],
   imports: [
     BrowserModule,
@@ -90,7 +92,8 @@ import { EntrySelectorDialogComponent } from './views/entry-selector-dialog/entr
     FormsModule,
     GraphQLModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HammerModule
   ],
   providers: [UserStoreService, ContentStoreService],
   bootstrap: [AppComponent],

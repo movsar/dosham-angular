@@ -33,7 +33,6 @@ export class EntryComponent {
           break;
 
         default:
-          console.log('no handler for the details of this type');
           break;
       }
       if (className !== '') {

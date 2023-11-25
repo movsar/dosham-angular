@@ -25,7 +25,7 @@ export class AppComponent {
   sidenav!: MatSidenav;
   isMobile = true;
   isCollapsed = true;
-  
+
   ngOnInit() {
     this._observer.observe(['(max-width: 800px)']).subscribe((screenSize) => {
       if (screenSize.matches) {
