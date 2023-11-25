@@ -1,4 +1,5 @@
 import { Directive, ElementRef, Output, EventEmitter, HostListener } from '@angular/core';
+import * as Hammer from 'hammerjs';
 
 @Directive({
   selector: '[appGestures]'
@@ -12,14 +13,18 @@ export class GesturesDirective {
 
   @HostListener('swipe', ['$event'])
   onSwipe(event: any) {
-    // Check for top-down swipe
-    if (event.deltaY > 0 && Math.abs(event.deltaX) < Math.abs(event.deltaY)) {
-      this.topDownSwipe.emit();
-    }
+    event.preventDefault();
 
-    // Left-to-right swipe
-    if (event.deltaX > 0 && Math.abs(event.deltaX) > Math.abs(event.deltaY)) {
-      this.leftToRightSwipe.emit();
+    switch (event.direction) {
+      case Hammer.DIRECTION_RIGHT:
+        // Gets called twice per swipe
+        this.leftToRightSwipe.emit();
+        break;
+
+      case Hammer.DIRECTION_DOWN:
+        this.topDownSwipe.emit();
+        break;
+
     }
   }
 }
