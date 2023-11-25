@@ -22,10 +22,10 @@ export class GesturesDirective implements OnInit, OnDestroy {
     this.hammerManager.on('swipe', (event) => {
       switch (event.direction) {
         case Hammer.DIRECTION_RIGHT:
-          this.debouncedEmit(this.leftToRightSwipe);
+          this.leftToRightSwipe.emit();
           break;
         case Hammer.DIRECTION_DOWN:
-          this.debouncedEmit(this.topDownSwipe);
+          this.topDownSwipe.emit();
           break;
       }
     });
@@ -35,10 +35,5 @@ export class GesturesDirective implements OnInit, OnDestroy {
     if (this.hammerManager) {
       this.hammerManager.destroy();
     }
-  }
-
-  private debouncedEmit(emitter: EventEmitter<void>) {
-    // Implement debounce logic here
-    emitter.emit();
   }
 }
