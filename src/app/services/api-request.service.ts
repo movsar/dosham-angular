@@ -177,11 +177,11 @@ export class ApiRequestService {
     return response;
   }
 
-  public async findEntriesRequest(inputText: string): Promise<RequestResult> {
+  public async findEntriesRequest(inputText: string, filtrationFlags?: IFiltrationFlags): Promise<RequestResult> {
     const method = 'find';
     const FIND_ENTRIES_QUERY = gql`
-      query ${method}($inputText: String!) {
-        ${method}(inputText: $inputText) {
+      query ${method}($inputText: String!, $filtrationFlags: FiltrationFlagsInput) {
+        ${method}(inputText: $inputText, filtrationFlags: $filtrationFlags) {
           success
           errorMessage
           serializedData
@@ -189,10 +189,18 @@ export class ApiRequestService {
       }
     `;
 
+    const variables: any = {
+      inputText,
+    }
+
+    if (filtrationFlags) {
+      variables.filtrationFlags = this.adjustFiltrationFlags(filtrationFlags)
+    }
+
     return await this.makeQueryRequest(
       method,
       FIND_ENTRIES_QUERY,
-      { inputText },
+      variables,
       this.FETCH_POLICY_CACHE_FIRST
     );
   }

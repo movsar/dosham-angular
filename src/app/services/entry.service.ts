@@ -8,9 +8,19 @@ import { RecordType } from '../enums/record-type.enum';
   providedIn: 'root',
 })
 export class EntryService {
+  filtrationFlagsForModeratedEntries: IFiltrationFlags = {
+    entryFilters: {
+      includeOnModeration: false,
+    },
+    translationFilters: {
+      includeOnModeration: false
+    }
+  };
+
   constructor(private _requestService: ApiRequestService) {}
 
   async search(s: string) {
+
     const data = await this._requestService.findEntriesRequest(s);
     if (!data.success) {
       throw 'No data received from the GraphQL';
