@@ -16,7 +16,7 @@
         Поддержать
       </a> -->
 
-      <!-- <ng-container *ngIf="userStore.CurrentUser">
+      <ng-container *ngIf="userStore.CurrentUser">
         <a mat-list-item [routerLink]="['/profile']">
           <mat-icon>person</mat-icon>
           Профиль
@@ -24,16 +24,16 @@
         <div class="email-display">
           {{currentUserEmail}}
         </div>
-      </ng-container> -->
+      </ng-container>
 
-      <!-- <ng-container *ngIf="!currentUserEmail">
+      <ng-container *ngIf="!currentUserEmail">
         <a mat-list-item [routerLink]="['/login']">
           <mat-icon>login</mat-icon>
           Log in
         </a>
-      </ng-container> -->
+      </ng-container>
 
-      <!-- <hr class="separator" /> -->
+      <hr class="separator" />
 
       <!-- <a mat-list-item [routerLink]="['/api']">
         <mat-icon>api</mat-icon>
@@ -46,17 +46,17 @@
     </mat-nav-list>
 
     <div class="actions-container">
-      <!-- <button mat-button color="primary" (click)="loadLatestEntries()">
+      <button mat-button color="primary" (click)="loadLatestEntries()">
         {{ 'Последние' }}
-      </button> -->
+      </button>
 
-      <!-- <button mat-button color="primary" (click)="toggleOnModerationFlag()">
+      <button mat-button color="primary" (click)="toggleOnModerationFlag()">
             {{ 'On moderation' }}
-        </button>-->
+        </button>
 
-      <!-- <a *ngIf="userStore.CurrentUser?.Id" mat-button color="accent" routerLink="/entry/edit">
+      <a *ngIf="userStore.CurrentUser?.Id" mat-button color="accent" routerLink="/entry/edit">
         {{ 'Add / Ask' }}
-      </a> -->
+      </a>
     </div>
 
 
