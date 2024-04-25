@@ -291,6 +291,11 @@ export class ApiRequestService {
           query: query,
           variables: variables,
           fetchPolicy: fetchPolicy,
+          context: {
+            headers: {
+              "ApiKey": "Whatever"
+            }
+          }
         })
       );
 
