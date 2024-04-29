@@ -29,7 +29,7 @@ export class Entry {
   public set Content(value) {
     const trimmedValue = value.trim();
     if (trimmedValue.includes(' ') || trimmedValue.includes('.') || trimmedValue.includes(',')) {
-      this._type = trimmedValue.length > 255 ? EntryType.Text : EntryType.Phrase;
+      this._type = EntryType.Text;
     } else {
       this._type = EntryType.Word;
     }
@@ -48,6 +48,5 @@ export class Entry {
 
 export enum EntryType {
   Word = 1,
-  Phrase = 2,
-  Text = 3
+  Text = 2,
 }

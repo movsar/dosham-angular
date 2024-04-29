@@ -68,6 +68,7 @@ export class AppComponent {
   }
 
   loadLatestEntries() {
+    
     this._contentStore.loadLatestEntries();
   }
 

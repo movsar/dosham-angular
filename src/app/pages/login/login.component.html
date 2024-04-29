@@ -2,37 +2,37 @@
 
   <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="login-form">
     <mat-form-field appearance="fill" class="full-width">
-      <mat-label>Email</mat-label>
+      <mat-label>Электронная почта</mat-label>
       <input matInput type="email" id="email" formControlName="email">
       <mat-error *ngIf="loginForm.get('email')?.errors?.['required']">
-        Email is required.
+        Необходиом указать электронную почту.
       </mat-error>
       <mat-error *ngIf="loginForm.get('email')?.errors?.['email']">
-        Please enter a valid email.
+        Введите правильную электронную почту.
       </mat-error>
     </mat-form-field>
 
     <mat-form-field appearance="fill" class="full-width">
-      <mat-label>Password</mat-label>
+      <mat-label>Пароль</mat-label>
       <input matInput type="password" id="password" formControlName="password">
       <mat-error *ngIf="loginForm.get('password')?.errors?.['required']">
-        Password is required.
+        Пароль необходим.
       </mat-error>
       <mat-error *ngIf="loginForm.get('password')?.errors?.['minlength']">
-        Password must be at least 6 characters.
+        Пароль должен состоять из минимум 6 символов.
       </mat-error>
     </mat-form-field>
 
     <button mat-raised-button color="primary" type="submit" [disabled]="!loginForm.valid" class="full-width">
-      Login
+      Войти
     </button>
 
     <button mat-button color="accent" type="button" *ngIf="errorMessages.length > 0" (click)="onResetClick()">
-      Reset
+      Сбросить
     </button>
 
     <button mat-button color="primary" type="button" (click)="onRegisterClick()">
-      Register
+      Зарегистрироваться
     </button>
 
     <app-form-errors [errorMessages]="errorMessages"></app-form-errors>

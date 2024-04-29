@@ -43,13 +43,7 @@ export class EntryComponent {
   }
 
   public get Subheader(): string {
-    if (!this.Entry.Source.Name) {
-      // console.warn(`Entry without a source name ${this.entry?.Content} : ${this.entry?.EntryId}`);
       return '';
-    }
-
-    const sourceNameTranslation = this.parseSource(this.Entry?.Source.Name!)!;
-    return sourceNameTranslation;
   }
 
   // This method will emit the pronunciationRequested event which you can bind to a method in your parent component

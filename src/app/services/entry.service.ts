@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { ApiRequestService } from './api-request.service';
-import { IFiltrationFlags } from '../models/filtration-flags.model';
-import { Entry } from '../models/entry.model';
 import { RecordType } from '../enums/record-type.enum';
+import { EntryType, Entry } from 'src/app/models/entry.model';
+import { IFiltrationFlags } from 'src/app/models/filtration-flags.model';
 
 @Injectable({
   providedIn: 'root',
@@ -21,7 +21,17 @@ export class EntryService {
 
   async search(s: string) {
 
-    const data = await this._requestService.findEntriesRequest(s);
+    const filtrationFlags: IFiltrationFlags = {
+      entryFilters: {
+        includeOnModeration: false,
+        entryTypes: [EntryType.Word, EntryType.Text],
+      },
+      translationFilters: {
+        includeOnModeration: false
+      }
+    };
+
+    const data = await this._requestService.findEntriesRequest(s, filtrationFlags);
     if (!data.success) {
       throw 'No data received from the GraphQL';
     }

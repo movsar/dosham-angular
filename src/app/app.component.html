@@ -29,7 +29,7 @@
       <ng-container *ngIf="!currentUserEmail">
         <a mat-list-item [routerLink]="['/login']">
           <mat-icon>login</mat-icon>
-          Log in
+          Вход
         </a>
       </ng-container>
 
@@ -39,26 +39,31 @@
         <mat-icon>api</mat-icon>
         API
       </a> -->
-      <a mat-list-item (click)="loadRandomEntries()">
-        <mat-icon>refresh</mat-icon>
-        Случайные
-      </a>
+
     </mat-nav-list>
 
     <div class="actions-container">
+      <button mat-button color="primary" (click)="loadRandomEntries()">
+        <!-- <mat-icon>refresh</mat-icon> -->
+        {{ 'Случайные' }}
+      </button>
+      <br />
+
       <button mat-button color="primary" (click)="loadLatestEntries()">
         {{ 'Последние' }}
       </button>
+      <br />
 
       <button mat-button color="primary" (click)="toggleOnModerationFlag()">
-            {{ 'On moderation' }}
-        </button>
+        {{ 'На модерации' }}
+      </button>
+      <br />
 
       <a *ngIf="userStore.CurrentUser?.Id" mat-button color="accent" routerLink="/entry/edit">
-        {{ 'Add / Ask' }}
+        {{ 'Добавить' }}
       </a>
+      <br />
     </div>
-
 
   </mat-sidenav>
   <mat-sidenav-content appGestures (leftToRightSwipe)="toggleMenu()">

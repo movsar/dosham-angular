@@ -14,42 +14,11 @@ export class EntryEditComponent {
     .map(([key, value]) => ({ name: key, value: value }));
 
   type: EntryType = EntryType.Word;
-  content = "";
-  notes = "";
-
-  Translations: Translation[] = [];
-
-  errorMessages?= [];
 
   constructor(private _router: Router) { }
 
-  save() {
-
-  }
   cancel() {
     this._router.navigate(['/']);
   }
 
-  deleteTranslation(translationId: string) {
-
-  }
-
-  canAddPronunciation(): boolean {
-    return true;
-  }
-  toggleRecording() {
-
-  }
-
-  newTranslation() {
-
-  }
-
-  canEditEntry(): boolean {
-    return true;
-  }
-
-  promoteTranslation(translation: Translation) {
-
-  }
 }
