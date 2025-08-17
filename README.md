@@ -2,7 +2,7 @@
 
 > Angular frontend for the **Chechen Language Dictionary** ecosystem. This app connects to the public **Chldr API** to search and browse Chechen words and multi‑word expressions.
 
-> *Current deployment* `https://dosham.app`
+> *Current deployment* https://dosham.app
 
 ---
 
